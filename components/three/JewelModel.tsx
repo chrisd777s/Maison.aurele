@@ -59,7 +59,9 @@ function Gem({
     );
   }
   return (
-    <mesh geometry={geometry} position={position} rotation={rotation} scale={size}>
+    // La clé force un nouveau maillage quand la taille change : la réfraction
+    // (BVH) est calculée au montage à partir de la géométrie.
+    <mesh key={shape} geometry={geometry} position={position} rotation={rotation} scale={size}>
       <GemMaterial
         kind={kind}
         palette={ctx.palette}

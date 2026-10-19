@@ -8,7 +8,8 @@ Lire `AGENTS.md` : cette version de Next.js diffère des connaissances d'entraî
 - Phase 1 (fondations : tokens, typographie, layout, i18n, navigation, pied de page) : faite.
 - Phase 2 (catalogue de 15 pièces, CommerceProvider local + Shopify, collections, fiches produit, loupe) : faite.
 - Phase 3 (3D procédurale : bague d'accueil, visionneuse, rendus fixes) : faite.
-- Phases suivantes : 4 configurateur · 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
+- Phase 4 (configurateur L'Atelier) : faite.
+- Phases suivantes : 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
   Après chaque phase : captures Playwright aux 4 largeurs, relecture, commit, puis attendre l'OK de l'utilisateur.
 
 ## Commandes
@@ -30,6 +31,7 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - `LazyJewel` : image fixe d'abord (LCP), 3D chargée au repos puis fondu ; pause hors écran ; Three.js jamais dans le bundle initial.
 - Rendus fixes : `public/renders/<slug>--<métal>.webp`, générés par `npm run renders` (studio `app/studio-affiches`, construit à part dans `.next-affiches`, n'existe qu'avec `POSTER_STUDIO=1`). À relancer après toute modification d'un modèle, d'une matière ou du catalogue.
 - Illustrations SVG (`components/art/JewelArt.tsx`) : vues « détail de la pierre » et « planche d'atelier ».
+- Atelier : `lib/atelier/` (état et codec d'URL versionné `v=1` : `forme`, `carats`, `metal`, `monture`, `gravure` ; barème indicatif dans `pricing.ts` ; pièce virtuelle `configuredProduct` dessinée par la 3D et le SVG). La page reste statique : la bague par défaut sert de repli au `Suspense`, `AtelierFromUrl` lit l'URL côté client ; le configurateur réécrit l'URL par `history.replaceState`. Le lien « Réaliser avec l'atelier » transmet `?creation=<paramètres>` au rendez-vous.
 - Ambiance de collection : `data-ambiance` sur un élément de la page teinte `--fond` de toute la page (`:root:has(...)`). `.scene-nuit` force une section en pénombre.
 
 ## Conventions

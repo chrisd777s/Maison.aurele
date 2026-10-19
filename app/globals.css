@@ -494,3 +494,46 @@
   background: var(--fond);
   color: var(--encre);
 }
+
+/* ── Atelier : curseur des carats ────────────────────────────── */
+
+.curseur {
+  appearance: none;
+  height: 2.75rem;
+  background: transparent;
+  cursor: pointer;
+}
+.curseur::-webkit-slider-runnable-track {
+  height: 1px;
+  background: var(--encre-douce);
+}
+.curseur::-moz-range-track {
+  height: 1px;
+  background: var(--encre-douce);
+}
+.curseur::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: -0.6875rem;
+  border-radius: 50%;
+  background: var(--fond);
+  border: 1px solid var(--encre);
+  box-shadow:
+    inset 0 0 0 4px var(--fond),
+    inset 0 0 0 11px var(--accent);
+  transition: transform var(--duree-courte) var(--ease-maison);
+}
+.curseur::-moz-range-thumb {
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  background: var(--fond);
+  border: 1px solid var(--encre);
+  box-shadow:
+    inset 0 0 0 4px var(--fond),
+    inset 0 0 0 11px var(--accent);
+}
+.curseur:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}

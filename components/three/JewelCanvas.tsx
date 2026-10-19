@@ -32,6 +32,11 @@ export type JewelCanvasProps = {
   /** Lumière pilotée par le gyroscope : [-1, 1] sur chaque axe. */
   tiltRef?: React.RefObject<{ x: number; y: number } | null>;
   active?: boolean;
+  /**
+   * « auto » : recadre à chaque changement de pièce. « fixe » : cadre une fois,
+   * pour que les variations de taille (configurateur) restent visibles.
+   */
+  framing?: "auto" | "fixe";
 };
 
 const FOV = 26;
@@ -45,6 +50,7 @@ function Scene({
   poster,
   onReady,
   tiltRef,
+  framing = "auto",
 }: JewelCanvasProps) {
   const { gl, camera, size } = useThree();
   const palette = useMemo(() => readPalette(), []);
@@ -78,8 +84,10 @@ function Scene({
   }, [poster]);
 
   // Cadrage : la caméra recule jusqu'à contenir la sphère englobante du bijou.
+  const framed = useRef(false);
   useLayoutEffect(() => {
-    if (!model.current) return;
+    if (!model.current || (framing === "fixe" && framed.current)) return;
+    framed.current = true;
     const box = new Box3().setFromObject(model.current);
     const sphere = box.getBoundingSphere(new Sphere());
     model.current.position.sub(sphere.center);
@@ -89,10 +97,13 @@ function Scene({
     const fitH = sphere.radius / Math.sin((FOV * Math.PI) / 360);
     const fitW = fitH / Math.min(1, size.width / size.height);
     const dir = new Vector3(...viewDirection(product.visual.form)).normalize();
-    cam.position.copy(dir.multiplyScalar(Math.max(fitH, fitW) * 1.08));
+    // Cadrage fixe : marge pour la plus grosse pierre possible (3 ct).
+    cam.position.copy(
+      dir.multiplyScalar(Math.max(fitH, fitW) * (framing === "fixe" ? 1.32 : 1.08)),
+    );
     cam.lookAt(0, 0, 0);
     cam.updateProjectionMatrix();
-  }, [camera, product, size.width, size.height]);
+  }, [camera, product, size.width, size.height, framing]);
 
   useFrame((_, delta) => {
     const target = tiltRef?.current ?? pointer.current;

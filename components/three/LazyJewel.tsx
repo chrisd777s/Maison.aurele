@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import type { MetalId, Product } from "@/lib/commerce/types";
-import { chooseTier, readDeviceSignals, type RenderTier } from "@/lib/device/capabilities";
+import { useRenderTier } from "@/lib/device/useRenderTier";
 import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 
 // Three.js n'est jamais dans le bundle initial : chargé à la demande, côté client.
@@ -25,19 +25,6 @@ type Props = {
   className?: string;
 };
 
-/** Attend que le navigateur soit au repos après le chargement, pour ne rien retarder. */
-function whenIdle(callback: () => void) {
-  const run = () => {
-    if (typeof window.requestIdleCallback === "function") {
-      window.requestIdleCallback(callback, { timeout: 2500 });
-    } else {
-      setTimeout(callback, 600);
-    }
-  };
-  if (document.readyState === "complete") run();
-  else window.addEventListener("load", run, { once: true });
-}
-
 /**
  * Image fixe rendue depuis la scène 3D (premier affichage, LCP), remplacée en
  * fondu par la 3D vivante si l'appareil le permet. Hors écran, la 3D se met en pause.
@@ -55,25 +42,9 @@ export function LazyJewel({
   className = "",
 }: Props) {
   const root = useRef<HTMLDivElement>(null);
-  const [tier, setTier] = useState<RenderTier | null>(null);
+  const { tier, reducedMotion } = useRenderTier(enable3d);
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (!enable3d) return;
-    let cancelled = false;
-    whenIdle(async () => {
-      const signals = await readDeviceSignals();
-      if (!cancelled) {
-        setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-        setTier(chooseTier(signals));
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [enable3d]);
 
   useEffect(() => {
     const element = root.current;
