@@ -18,7 +18,8 @@ import {
 } from "@/lib/atelier/config";
 import { priceConfig } from "@/lib/atelier/pricing";
 import { configuredProduct } from "@/lib/atelier/product";
-import { formatNumber, formatPrice } from "@/lib/format";
+import { formatNumber } from "@/lib/format";
+import { Price } from "@/components/shop/Price";
 import { AtelierViewer } from "./AtelierViewer";
 import { EngravingPreview } from "./EngravingPreview";
 import { SettingPictogram, ShapePictogram } from "./Pictograms";
@@ -243,15 +244,17 @@ export function AtelierConfigurator({ initial }: { initial: AtelierConfig }) {
             {t("summaryTitle")}
           </h2>
           <dl className="mt-4 text-petit">
-            {[
-              [t("summaryStone"), formatPrice(price.stone, locale)],
-              [t("summarySetting"), formatPrice(price.setting, locale)],
+            {(
               [
-                t("summaryMetal"),
-                price.metal > 0 ? formatPrice(price.metal, locale) : t("included"),
-              ],
-              [t("summaryEngraving"), t("offered")],
-            ].map(([term, value]) => (
+                [t("summaryStone"), <Price key="pierre" cad={price.stone} />],
+                [t("summarySetting"), <Price key="monture" cad={price.setting} />],
+                [
+                  t("summaryMetal"),
+                  price.metal > 0 ? <Price key="metal" cad={price.metal} /> : t("included"),
+                ],
+                [t("summaryEngraving"), t("offered")],
+              ] satisfies [string, ReactNode][]
+            ).map(([term, value]) => (
               <div key={term} className="flex justify-between border-b border-filet py-2">
                 <dt className="text-encre-douce">{term}</dt>
                 <dd className="chiffres">{value}</dd>
@@ -264,7 +267,7 @@ export function AtelierConfigurator({ initial }: { initial: AtelierConfig }) {
                 aria-live="polite"
                 data-testid="prix-atelier"
               >
-                {formatPrice(price.total, locale)}
+                <Price cad={price.total} />
               </dd>
             </div>
           </dl>

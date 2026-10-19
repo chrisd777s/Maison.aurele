@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { getProducts } from "@/lib/commerce";
-import { formatPrice } from "@/lib/format";
+import { Price } from "@/components/shop/Price";
 import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 
 /** La pièce d'exception, présentée dans la pénombre quel que soit le mode. */
@@ -44,7 +44,7 @@ export async function MasterPiece() {
           <p className="mt-4 font-display text-chapeau text-encre-douce italic">{piece.summary}</p>
           <p className="mt-8 text-encre-douce">{piece.description}</p>
           <p className="chiffres mt-8 text-titre-3 font-light">
-            {formatPrice(piece.priceCad, locale)}
+            <Price cad={piece.priceCad} />
           </p>
           <ButtonLink
             href={{ pathname: "/creations/[slug]", params: { slug: piece.slug } }}

@@ -9,7 +9,8 @@ Lire `AGENTS.md` : cette version de Next.js diffère des connaissances d'entraî
 - Phase 2 (catalogue de 15 pièces, CommerceProvider local + Shopify, collections, fiches produit, loupe) : faite.
 - Phase 3 (3D procédurale : bague d'accueil, visionneuse, rendus fixes) : faite.
 - Phase 4 (configurateur L'Atelier) : faite.
-- Phases suivantes : 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
+- Phase 5 (panier, Écrin et partage, Stripe Checkout, rendez-vous privé, courriels) : faite.
+- Phases suivantes : 6 éditorial · 7 perf/a11y/SEO.
   Après chaque phase : captures Playwright aux 4 largeurs, relecture, commit, puis attendre l'OK de l'utilisateur.
 
 ## Commandes
@@ -32,6 +33,11 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - Rendus fixes : `public/renders/<slug>--<métal>.webp`, générés par `npm run renders` (studio `app/studio-affiches`, construit à part dans `.next-affiches`, n'existe qu'avec `POSTER_STUDIO=1`). À relancer après toute modification d'un modèle, d'une matière ou du catalogue.
 - Illustrations SVG (`components/art/JewelArt.tsx`) : vues « détail de la pierre » et « planche d'atelier ».
 - Atelier : `lib/atelier/` (état et codec d'URL versionné `v=1` : `forme`, `carats`, `metal`, `monture`, `gravure` ; barème indicatif dans `pricing.ts` ; pièce virtuelle `configuredProduct` dessinée par la 3D et le SVG). La page reste statique : la bague par défaut sert de repli au `Suspense`, `AtelierFromUrl` lit l'URL côté client ; le configurateur réécrit l'URL par `history.replaceState`. Le lien « Réaliser avec l'atelier » transmet `?creation=<paramètres>` au rendez-vous.
+- Boutique : `lib/shop/` (magasin Zustand persisté `useShop`, relu après montage par `ShopProvider` — n'y écrire qu'une fois `hydrated`, sinon le stockage local est écrasé ; état d'interface à part, ex. `useCartDrawer`). Catalogue réduit (`CatalogueEntry`) transmis par le layout. `priceOrder` calcule l'affichage ET le montant facturé (le navigateur n'envoie que des références). Acompte : seuil et taux dans `order.ts`.
+- Prix affichés : toujours `<Price cad={…} />` (devise d'affichage) ; `formatPrice` reste pour le serveur et les courriels (CAD).
+- Écrin partagé : jeton base64url sans stockage (`lib/ecrin/token.ts`), validé dans le proxy (404) ; page `instant = false` (rendue à la demande, non indexée).
+- Paiement : `app/api/checkout` (Stripe REST via `lib/stripe.ts`, mode démonstration sans clé), webhook signé `app/api/stripe/webhook`.
+- Rendez-vous : `lib/appointment/` (schéma Zod partagé formulaire/route, créneaux calculés, .ics), formulaire RHF en 3 étapes (`components/appointment/`), route `app/api/rendez-vous`. Courriels : `lib/mail/` (`.outbox/` ou Resend), gabarits en tableaux et styles en ligne (`lib/mail/theme.ts` recopie les tokens : seule exception aux couleurs codées).
 - Ambiance de collection : `data-ambiance` sur un élément de la page teinte `--fond` de toute la page (`:root:has(...)`). `.scene-nuit` force une section en pénombre.
 
 ## Conventions
@@ -42,4 +48,5 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - URL traduites : déclarer chaque page dans `i18n/routing.ts` (`pathnames`), naviguer avec `Link` de `@/i18n/navigation`.
 - Mouvement : courbe `ease-maison`, 600–1200 ms, montée ≤ 16 px ; `data-reveal` pour les révélations au scroll ; tout respecte `prefers-reduced-motion`.
 - Composants serveur par défaut ; `"use client"` seulement pour l'interaction (menu, bascules).
-- Pas de dépendance nouvelle sans raison écrite ici.
+- Pas de dépendance nouvelle sans raison écrite ici. Ajoutées : `zustand` (panier/Écrin persistés), `react-hook-form` + `zod` (formulaires, schémas partagés avec les routes ; adaptateur maison `lib/forms/zod-resolver.ts`, `@hookform/resolvers` ayant des dépendances optionnelles en conflit). Stripe et Resend : API REST par `fetch`, sans SDK.
+- `fieldset` : `min-inline-size: 0` posé globalement (sinon débordement horizontal sur mobile).

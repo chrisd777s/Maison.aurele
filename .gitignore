@@ -47,3 +47,4 @@ next-env.d.ts
 !.env.example
 /tests/e2e/captures
 /.next-affiches/
+/.outbox/

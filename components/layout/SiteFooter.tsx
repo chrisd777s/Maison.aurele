@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { maison } from "@/data/maison";
 import { Link } from "@/i18n/navigation";
 import type { Href } from "./nav-items";
+import { CurrencySwitch } from "@/components/shop/CurrencySwitch";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { ThemeToggle } from "./ThemeToggle";
 import { Wordmark } from "./Wordmark";
@@ -85,6 +86,7 @@ export async function SiteFooter() {
             <LocaleSwitch className="-ml-2" />
             <p className="sr-only">{theme("label")}</p>
             <ThemeToggle />
+            <CurrencySwitch className="-ml-1" />
           </div>
         </div>
 

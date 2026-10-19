@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Icon } from "@/components/ui/Icon";
+import { HeaderShopLinks } from "@/components/shop/HeaderShopLinks";
 import { CollectionsMenu } from "./CollectionsMenu";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { MobileMenu } from "./MobileMenu";
@@ -106,15 +106,7 @@ export async function SiteHeader() {
             <li className="hidden xl:block">
               <LocaleSwitch />
             </li>
-            <li>
-              <NavLink
-                href="/ecrin"
-                className="-mr-2 inline-flex size-11 items-center justify-center"
-                aria-label={nav("ecrin")}
-              >
-                <Icon name="ecrin" />
-              </NavLink>
-            </li>
+            <HeaderShopLinks />
           </ul>
         </nav>
       </div>

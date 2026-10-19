@@ -2,10 +2,13 @@
 
 import { useId, type CSSProperties } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Price } from "@/components/shop/Price";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { Icon } from "@/components/ui/Icon";
 import { Link } from "@/i18n/navigation";
 import type { MetalId, Product } from "@/lib/commerce/types";
-import { formatPrice } from "@/lib/format";
+import { DEPOSIT_RATE, DEPOSIT_THRESHOLD } from "@/lib/shop/order";
+import { useShop } from "@/lib/shop/store";
 import { useProductSelection } from "./ProductSelection";
 
 const swatch: Record<MetalId, string> = {
@@ -24,6 +27,10 @@ export function ProductPurchase({ product }: { product: Product }) {
   const { metal, setMetal, size, setSize } = useProductSelection();
   const sizeId = useId();
   const delta = product.metals.find((x) => x.id === metal)?.priceDelta ?? 0;
+  const price = product.priceCad + delta;
+  const addLine = useShop((s) => s.addLine);
+  const toggleEcrin = useShop((s) => s.toggleEcrin);
+  const inEcrin = useShop((s) => s.ecrin.some((i) => i.slug === product.slug));
   const sizeLabel =
     product.sizes?.kind === "bague"
       ? t("sizeRing")
@@ -34,8 +41,13 @@ export function ProductPurchase({ product }: { product: Product }) {
   return (
     <div>
       <p className="chiffres text-titre-3 font-light" aria-live="polite">
-        {formatPrice(product.priceCad + delta, locale)}
+        <Price cad={price} />
       </p>
+      {price >= DEPOSIT_THRESHOLD && (
+        <p className="mt-2 text-petit text-encre-douce">
+          {t("depositHint", { rate: DEPOSIT_RATE * 100 })}
+        </p>
+      )}
 
       {product.metals.length > 1 ? (
         <fieldset className="mt-10">
@@ -64,7 +76,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                 <span className="text-petit">{m(`metalsShort.${option.id}`)}</span>
                 {option.priceDelta > 0 && (
                   <span className="chiffres text-petit text-encre-douce">
-                    +{formatPrice(option.priceDelta, locale)}
+                    +<Price cad={option.priceDelta} />
                   </span>
                 )}
               </label>
@@ -122,11 +134,40 @@ export function ProductPurchase({ product }: { product: Product }) {
           : t("leadMade", { min: product.leadTime.weeksMin, max: product.leadTime.weeksMax })}
       </p>
 
-      <div className="mt-10 border-t border-filet pt-8">
-        <ButtonLink href="/rendez-vous" className="w-full">
+      <div className="mt-10 space-y-3 border-t border-filet pt-8">
+        <button
+          type="button"
+          onClick={() => addLine({ slug: product.slug, metal, size })}
+          className="surtitre inline-flex min-h-12 w-full items-center justify-center gap-3 bg-encre px-8 text-fond transition-colors duration-[var(--duree-courte)] ease-maison hover:bg-[color-mix(in_oklab,var(--encre)_86%,var(--accent))]"
+        >
+          <Icon name="sac" width={18} height={18} />
+          {t("addToCart")}
+        </button>
+        <button
+          type="button"
+          onClick={() => toggleEcrin({ slug: product.slug, metal })}
+          aria-pressed={inEcrin}
+          className="surtitre inline-flex min-h-12 w-full items-center justify-center gap-3 border border-encre/70 px-8 text-encre transition-colors duration-[var(--duree-courte)] ease-maison hover:border-encre"
+        >
+          <Icon
+            name="ecrin"
+            width={18}
+            height={18}
+            className={inEcrin ? "fill-[color-mix(in_oklab,var(--accent)_45%,transparent)]" : ""}
+          />
+          {inEcrin ? t("inEcrin") : t("addToEcrin")}
+        </button>
+      </div>
+
+      <div className="mt-8">
+        <ButtonLink
+          href={{ pathname: "/rendez-vous", query: { piece: product.slug } }}
+          variant="texte"
+        >
           {t("privateView")}
+          <Icon name="arrow" width={14} height={14} />
         </ButtonLink>
-        <p className="mt-4 text-petit text-encre-douce">{t("privateViewHint")}</p>
+        <p className="mt-2 text-petit text-encre-douce">{t("privateViewHint")}</p>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { JewelArt } from "@/components/art/JewelArt";
 import { Link } from "@/i18n/navigation";
 import type { Product } from "@/lib/commerce/types";
-import { formatPrice } from "@/lib/format";
+import { Price } from "@/components/shop/Price";
 import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 
 /** Carte de pièce : la vue de détail se révèle au survol, sous la vue de face. */
@@ -50,7 +50,9 @@ export async function ProductCard({
         <Heading className="font-display text-titre-3 leading-tight font-light">
           {product.name}
         </Heading>
-        <p className="chiffres shrink-0 text-chapeau">{formatPrice(product.priceCad, locale)}</p>
+        <p className="chiffres shrink-0 text-chapeau">
+          <Price cad={product.priceCad} />
+        </p>
       </div>
       <p className="mt-1 text-petit text-encre-douce">{product.summary}</p>
     </Link>

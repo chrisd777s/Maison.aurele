@@ -7,8 +7,12 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { RevealObserver } from "@/components/motion/RevealObserver";
+import { CartDrawer } from "@/components/shop/CartDrawer";
+import { ShopProvider } from "@/components/shop/ShopProvider";
 import { siteUrl } from "@/data/maison";
 import { routing } from "@/i18n/routing";
+import { getProducts } from "@/lib/commerce";
+import { toCatalogueEntry } from "@/lib/shop/catalogue";
 import { cormorant, jost } from "@/lib/fonts";
 import "../globals.css";
 
@@ -41,6 +45,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 export default async function LocaleLayout({ children }: LayoutProps<"/[locale]">) {
   const locale = await rootLocale();
   if (!hasLocale(routing.locales, locale)) notFound();
+  const catalogue = (await getProducts(locale)).map(toCatalogueEntry);
 
   return (
     <html
@@ -53,13 +58,16 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
       </head>
       <body>
         <NextIntlClientProvider>
-          <SkipLink />
-          <SiteHeader />
-          <main id="contenu" tabIndex={-1} className="outline-none">
-            {children}
-          </main>
-          <SiteFooter />
-          <RevealObserver />
+          <ShopProvider catalogue={catalogue}>
+            <SkipLink />
+            <SiteHeader />
+            <main id="contenu" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
+            <SiteFooter />
+            <CartDrawer />
+            <RevealObserver />
+          </ShopProvider>
         </NextIntlClientProvider>
       </body>
     </html>

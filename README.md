@@ -36,3 +36,17 @@ Pour les remplacer par des photographies, déposer `public/renders/<slug>--<mét
 ## Variables d'environnement
 
 Voir `.env.example`. Le site fonctionne sans aucun compte externe.
+
+## Commerce
+
+- **Panier et Écrin** : conservés dans le navigateur (`localStorage`, clé `aurele-boutique`), sans compte. Les prix n'y sont jamais stockés : le serveur les relit dans le catalogue au moment du paiement.
+- **Paiement** : `POST /api/checkout`. Avec `STRIPE_SECRET_KEY` (clé de test), redirection vers Stripe Checkout en dollars canadiens ; sans clé, mode démonstration (page de remerciement directe). Les pièces de 15 000 $ et plus sont réservées par un acompte de 30 % (`lib/shop/order.ts`).
+- **Webhook** : `POST /api/stripe/webhook` vérifie la signature et envoie la confirmation de commande. En local : `stripe listen --forward-to localhost:3000/api/stripe/webhook`, puis reporter le secret affiché dans `STRIPE_WEBHOOK_SECRET`.
+- **Taxes** : non calculées dans cette version (à activer avec Stripe Tax avant la mise en production).
+- **Devises** : CAD facturé ; USD et EUR indicatifs, à taux fixes datés dans `lib/currency.ts` (à mettre à jour à la main).
+
+## Rendez-vous et courriels
+
+- `POST /api/rendez-vous` valide la demande (même schéma Zod que le formulaire), vérifie le créneau, puis envoie deux courriels : la confirmation au visiteur et un avis au salon.
+- Les créneaux sont calculés (`lib/appointment/slots.ts`) : du mardi au samedi, sur trois semaines. À remplacer par un agenda réel (Calendly, Google Agenda) avant la mise en production.
+- Sans `RESEND_API_KEY`, les courriels sont écrits dans `.outbox/` (un `.html` à ouvrir dans un navigateur, un `.json` avec destinataire et version texte). L'écriture de fichiers n'est pas possible sur un hébergement sans disque (Vercel) : y configurer Resend.

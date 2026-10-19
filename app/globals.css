@@ -160,6 +160,11 @@
 /* ── Base ─────────────────────────────────────────────────────── */
 
 @layer base {
+  /* Un fieldset s'élargit par défaut à son contenu : il déborderait sur mobile
+     (rangée de jours défilante du rendez-vous). */
+  fieldset {
+    min-inline-size: 0;
+  }
   html {
     background: var(--fond);
     color: var(--encre);
@@ -387,6 +392,59 @@
 }
 :root:has(.menu-plein[open]) {
   overflow: hidden;
+}
+
+/* Tiroir latéral (panier) : glisse depuis la droite, voile sur la page. */
+.tiroir {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(100%, 30rem);
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid var(--filet);
+  background: var(--fond);
+  color: var(--encre);
+  translate: 100% 0;
+  transition:
+    translate var(--duree-courte) var(--ease-maison),
+    display var(--duree-courte) allow-discrete,
+    overlay var(--duree-courte) allow-discrete;
+}
+.tiroir[open] {
+  translate: 0 0;
+}
+@starting-style {
+  .tiroir[open] {
+    translate: 100% 0;
+  }
+}
+.tiroir::backdrop {
+  background: color-mix(in oklab, var(--onyx) 0%, transparent);
+  transition:
+    background var(--duree-courte) var(--ease-maison),
+    display var(--duree-courte) allow-discrete,
+    overlay var(--duree-courte) allow-discrete;
+}
+.tiroir[open]::backdrop {
+  background: color-mix(in oklab, var(--onyx) 42%, transparent);
+}
+@starting-style {
+  .tiroir[open]::backdrop {
+    background: color-mix(in oklab, var(--onyx) 0%, transparent);
+  }
+}
+:root:has(.tiroir[open]) {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tiroir,
+  .tiroir[open] {
+    translate: 0 0;
+  }
 }
 
 /* ── Accueil ─────────────────────────────────────────────────── */
