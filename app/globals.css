@@ -20,6 +20,21 @@
   --onyx-voile: #1a1917;
   --onyx-filet: #2e2b28;
 
+  /* Matières (illustrations et rendus uniquement, jamais pour du texte) */
+  --or-jaune: #d4b06a;
+  --or-blanc: #e4e3e0;
+  --or-rose: #ddb09b;
+  --platine: #cfd3d6;
+  --or-noir: #2c2b2a;
+  --diamant: #fbfcfd;
+  --diamant-reflet: #d7e2ec;
+  --diamant-noir: #1c1c1e;
+  --saphir: #1f3f73;
+  --saphir-clair: #7f9dc8;
+  --perle: #f6f0ea;
+  --perle-lustre: #e6d6d0;
+  --onyx-pierre: #121213;
+
   /* Rôles (jour) */
   --fond: var(--ivoire);
   --surface: var(--nacre);
@@ -28,7 +43,7 @@
   --accent: var(--champagne);
   --accent-encre: var(--champagne-encre);
   --filet: color-mix(in oklab, var(--pierre) 35%, transparent);
-  --voile: color-mix(in oklab, var(--ivoire) 86%, transparent);
+  --voile: color-mix(in oklab, var(--fond) 86%, transparent);
 
   /* Mise en page */
   --marge: clamp(1rem, 4.5vw, 6rem);
@@ -55,7 +70,6 @@
     --encre-douce: var(--pierre);
     --accent-encre: var(--champagne);
     --filet: var(--onyx-filet);
-    --voile: color-mix(in oklab, var(--onyx) 84%, transparent);
     color-scheme: dark;
   }
 }
@@ -66,8 +80,33 @@
   --encre-douce: var(--pierre);
   --accent-encre: var(--champagne);
   --filet: var(--onyx-filet);
-  --voile: color-mix(in oklab, var(--onyx) 84%, transparent);
   color-scheme: dark;
+}
+
+/* Ambiances de collection : le fond de toute la page se teinte légèrement
+   dès qu'un élément [data-ambiance] est présent. Contrastes AA vérifiés. */
+:root:has([data-ambiance="aube"]) {
+  --ambiance-jour: #f8f1ec;
+  --ambiance-nuit: #15110f;
+}
+:root:has([data-ambiance="maree"]) {
+  --ambiance-jour: #eef1ef;
+  --ambiance-nuit: #0c1013;
+}
+:root:has([data-ambiance="obsidienne"]) {
+  --ambiance-jour: #ece8e3;
+  --ambiance-nuit: #070707;
+}
+:root:has([data-ambiance]) {
+  --fond: var(--ambiance-jour);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="jour"]):has([data-ambiance]) {
+    --fond: var(--ambiance-nuit);
+  }
+}
+:root[data-theme="nuit"]:has([data-ambiance]) {
+  --fond: var(--ambiance-nuit);
 }
 
 /* Tailwind ne connaît que ces couleurs : la palette par défaut est retirée. */
@@ -423,4 +462,35 @@
     animation: none;
     opacity: 1;
   }
+}
+
+/* ── Fiche produit ───────────────────────────────────────────── */
+
+.loupe-lentille {
+  background: var(--surface);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 0 0 5px color-mix(in oklab, var(--fond) 70%, transparent),
+    0 22px 44px color-mix(in oklab, var(--onyx) 24%, transparent);
+}
+
+/* Pastilles de métal */
+.pastille {
+  background: var(--pastille);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--onyx) 18%, transparent),
+    inset -3px -4px 6px color-mix(in oklab, var(--onyx) 14%, transparent),
+    inset 3px 3px 5px color-mix(in oklab, var(--diamant) 60%, transparent);
+}
+
+/* Scène nocturne locale : une section toujours en « salon de nuit » */
+.scene-nuit {
+  --fond: var(--onyx);
+  --surface: var(--onyx-voile);
+  --encre: var(--ivoire);
+  --encre-douce: var(--pierre);
+  --accent-encre: var(--champagne);
+  --filet: var(--onyx-filet);
+  background: var(--fond);
+  color: var(--encre);
 }

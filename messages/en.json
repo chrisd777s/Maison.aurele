@@ -85,12 +85,120 @@
     "appointmentEyebrow": "Private salon",
     "appointmentTitle": "A conversation, first of all.",
     "appointmentText": "In Montréal, in Paris or from afar, an hour that is entirely yours: to try on, to understand a stone, to imagine a commission. Never any obligation.",
-    "appointmentCta": "Reserve a moment"
+    "appointmentCta": "Reserve a moment",
+    "exceptionEyebrow": "Exceptional piece",
+    "exceptionCta": "Discover the piece",
+    "chapterCta": "Enter the collection"
   },
   "NotFound": {
     "eyebrow": "Error 404",
     "title": "This page has slipped out of the light.",
     "text": "Perhaps it has found another case. Return to the home page, or let our collections guide you.",
     "home": "Back to home"
+  },
+  "Materials": {
+    "metals": {
+      "or-blanc": "18-carat white gold",
+      "or-jaune": "18-carat yellow gold",
+      "or-rose": "18-carat rose gold",
+      "platine": "Platinum 950",
+      "or-noir": "Black-rhodium 18-carat gold"
+    },
+    "metalsShort": {
+      "or-blanc": "White gold",
+      "or-jaune": "Yellow gold",
+      "or-rose": "Rose gold",
+      "platine": "Platinum",
+      "or-noir": "Black gold"
+    },
+    "kinds": {
+      "diamant": "Diamond",
+      "diamant-noir": "Black diamond",
+      "saphir": "Ceylon sapphire",
+      "perle-akoya": "Akoya pearl",
+      "onyx": "Onyx"
+    },
+    "shapes": {
+      "rond": "Round brilliant",
+      "ovale": "Oval",
+      "emeraude": "Emerald",
+      "poire": "Pear",
+      "coussin": "Cushion",
+      "perle": "Round pearl",
+      "cabochon": "Cabochon"
+    },
+    "cuts": {
+      "Excellente": "Excellent",
+      "Très bonne": "Very good"
+    },
+    "categories": {
+      "bague": "Ring",
+      "boucles": "Earrings",
+      "collier": "Necklace",
+      "pendentif": "Pendant",
+      "bracelet": "Bracelet"
+    }
+  },
+  "Collection": {
+    "eyebrow": "Collection {number}",
+    "piecesTitle": "The pieces",
+    "piecesCount": "{count, plural, one {# piece} other {# pieces}}",
+    "next": "Next collection",
+    "discover": "Discover",
+    "metaDescription": "{tagline}. {stones}. The {name} collection by Maison Aurèle, fine jewellery made in Montréal."
+  },
+  "Product": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "reference": "Ref. {reference}",
+    "metal": "Metal",
+    "sizeRing": "Size (CA/US)",
+    "sizeNecklace": "Chain length",
+    "sizeWrist": "Wrist size",
+    "centimetres": "{value} cm",
+    "sizeGuide": "Find my size",
+    "leadInStock": "Available · ships within three business days, fully insured",
+    "leadMade": "Made to order in our atelier · {min} to {max} weeks",
+    "privateView": "View in a private salon",
+    "privateViewHint": "Try this piece in Montréal, in Paris or by video call.",
+    "galleryLabel": "Images of the piece",
+    "viewFace": "Front view",
+    "viewDetail": "Stone detail",
+    "viewPlanche": "Atelier drawing",
+    "loupe": "Jeweller’s loupe",
+    "loupeHint": "Hover over the image to examine it at four times magnification. On a touch screen, turn on the loupe and slide your finger; with a keyboard, use the arrow keys.",
+    "storyTitle": "The piece",
+    "specsTitle": "Specifications",
+    "centralStone": "Main stone",
+    "accentStones": "Accent stones",
+    "stone": "Stone",
+    "shape": "Shape",
+    "weight": "Weight",
+    "colour": "Colour",
+    "clarity": "Clarity",
+    "cut": "Cut grade",
+    "origin": "Origin",
+    "treatment": "Treatment",
+    "count": "Number",
+    "diameter": "Diameter",
+    "carats": "{value} ct",
+    "millimetres": "{value} mm",
+    "metalTitle": "Metal",
+    "metalWeight": "Metal weight",
+    "grams": "{value} g",
+    "certificate": "Certificate",
+    "certificateValue": "Independent gemmological laboratory, no. {number}",
+    "provenanceTitle": "Provenance",
+    "provenanceText": "Every major stone is traced from mine to setting. The journey number also appears on the case, as a QR code.",
+    "provenanceCode": "Journey no. {code}",
+    "provenanceLink": "Follow the journey",
+    "promise": "Lifetime warranty · Thirty-day returns · Case and certificate included",
+    "related": "In the same collection",
+    "metaTitle": "{name} — {summary}",
+    "journeyMine": "Mining",
+    "journeyCut": "Cutting",
+    "journeyAtelier": "Setting",
+    "journeyCutValue": "Partner lapidary, independently verified",
+    "journeyAtelierValue": "Our atelier, Montréal"
   }
 }

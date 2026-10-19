@@ -6,7 +6,8 @@ Lire `AGENTS.md` : cette version de Next.js diffère des connaissances d'entraî
 ## État
 
 - Phase 1 (fondations : tokens, typographie, layout, i18n, navigation, pied de page) : faite.
-- Phases suivantes : 2 catalogue · 3 3D · 4 configurateur · 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
+- Phase 2 (catalogue de 15 pièces, CommerceProvider local + Shopify, collections, fiches produit, loupe) : faite.
+- Phases suivantes : 3 3D · 4 configurateur · 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
   Après chaque phase : captures Playwright aux 4 largeurs, relecture, commit, puis attendre l'OK de l'utilisateur.
 
 ## Commandes
@@ -18,6 +19,14 @@ npm run build && PLAYWRIGHT_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test
 ```
 
 Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
+
+## Architecture
+
+- Catalogue : `data/collections.ts`, `data/products.ts` (textes FR/EN dans les données ; descriptions de 60 à 90 mots, testé). Interface `CommerceProvider` dans `lib/commerce/types.ts` ; accès mis en cache via `lib/commerce/index.ts` (`"use cache"`), fournisseur choisi par `COMMERCE_PROVIDER` (`local` par défaut, `shopify`).
+- Shopify : `lib/commerce/shopify/` (requêtes Storefront, métadonnées sous l'espace `aurele`, conversion pure testée dans `tests/unit/shopify.test.ts`).
+- Slugs inconnus : le proxy (`proxy.ts`) renvoie un vrai 404 avant le rendu (sinon le rendu partiel répond 200). Toute nouvelle route dynamique de catalogue doit y être ajoutée.
+- Visuels provisoires : `components/art/JewelArt.tsx` (SVG procéduraux : vue de face, détail, planche), remplacés par les rendus 3D en phase 3.
+- Ambiance de collection : `data-ambiance` sur un élément de la page teinte `--fond` de toute la page (`:root:has(...)`). `.scene-nuit` force une section en pénombre.
 
 ## Conventions
 

@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { AppointmentCall } from "@/components/home/AppointmentCall";
-import { CollectionsIndex } from "@/components/home/CollectionsIndex";
+import { CollectionChapters } from "@/components/home/CollectionChapters";
 import { Hero } from "@/components/home/Hero";
 import { Manifesto } from "@/components/home/Manifesto";
+import { MasterPiece } from "@/components/home/MasterPiece";
 import type { Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo/metadata";
 
@@ -22,7 +23,8 @@ export default function HomePage() {
     <>
       <Hero />
       <Manifesto />
-      <CollectionsIndex />
+      <CollectionChapters />
+      <MasterPiece />
       <AppointmentCall />
     </>
   );

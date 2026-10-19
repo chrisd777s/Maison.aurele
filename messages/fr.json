@@ -85,12 +85,120 @@
     "appointmentEyebrow": "Salon privé",
     "appointmentTitle": "Une conversation, avant tout.",
     "appointmentText": "À Montréal, à Paris ou à distance, une heure rien que pour vous : essayer, comprendre une pierre, imaginer une création. Sans engagement, toujours.",
-    "appointmentCta": "Réserver un moment"
+    "appointmentCta": "Réserver un moment",
+    "exceptionEyebrow": "Pièce d’exception",
+    "exceptionCta": "Découvrir la pièce",
+    "chapterCta": "Entrer dans la collection"
   },
   "NotFound": {
     "eyebrow": "Erreur 404",
     "title": "Cette page s’est dérobée à la lumière.",
     "text": "Elle a peut-être changé d’écrin. Revenez à l’accueil, ou laissez-vous guider par nos collections.",
     "home": "Retour à l’accueil"
+  },
+  "Materials": {
+    "metals": {
+      "or-blanc": "Or blanc 18 carats",
+      "or-jaune": "Or jaune 18 carats",
+      "or-rose": "Or rose 18 carats",
+      "platine": "Platine 950",
+      "or-noir": "Or 18 carats rhodié noir"
+    },
+    "metalsShort": {
+      "or-blanc": "Or blanc",
+      "or-jaune": "Or jaune",
+      "or-rose": "Or rose",
+      "platine": "Platine",
+      "or-noir": "Or noir"
+    },
+    "kinds": {
+      "diamant": "Diamant",
+      "diamant-noir": "Diamant noir",
+      "saphir": "Saphir de Ceylan",
+      "perle-akoya": "Perle d’Akoya",
+      "onyx": "Onyx"
+    },
+    "shapes": {
+      "rond": "Brillant rond",
+      "ovale": "Ovale",
+      "emeraude": "Émeraude",
+      "poire": "Poire",
+      "coussin": "Coussin",
+      "perle": "Perle ronde",
+      "cabochon": "Cabochon"
+    },
+    "cuts": {
+      "Excellente": "Excellente",
+      "Très bonne": "Très bonne"
+    },
+    "categories": {
+      "bague": "Bague",
+      "boucles": "Boucles d’oreilles",
+      "collier": "Collier",
+      "pendentif": "Pendentif",
+      "bracelet": "Bracelet"
+    }
+  },
+  "Collection": {
+    "eyebrow": "Collection {number}",
+    "piecesTitle": "Les pièces",
+    "piecesCount": "{count, plural, one {# pièce} other {# pièces}}",
+    "next": "Collection suivante",
+    "discover": "Découvrir",
+    "metaDescription": "{tagline}. {stones}. Collection {name} de Maison Aurèle, haute joaillerie façonnée à Montréal."
+  },
+  "Product": {
+    "breadcrumb": "Fil d’Ariane",
+    "home": "Accueil",
+    "reference": "Réf. {reference}",
+    "metal": "Métal",
+    "sizeRing": "Taille (CA/US)",
+    "sizeNecklace": "Longueur de chaîne",
+    "sizeWrist": "Tour de poignet",
+    "centimetres": "{value} cm",
+    "sizeGuide": "Trouver ma taille",
+    "leadInStock": "Disponible · expédiée sous trois jours ouvrables, livraison assurée",
+    "leadMade": "Façonnée à la commande dans notre atelier · {min} à {max} semaines",
+    "privateView": "Voir en salon privé",
+    "privateViewHint": "Essayez cette pièce à Montréal, à Paris ou en visioconférence.",
+    "galleryLabel": "Images de la pièce",
+    "viewFace": "Vue de face",
+    "viewDetail": "Détail de la pierre",
+    "viewPlanche": "Planche d’atelier",
+    "loupe": "Loupe de joaillier",
+    "loupeHint": "Survolez l’image pour l’examiner grossie quatre fois. Sur écran tactile, activez la loupe puis faites glisser le doigt ; au clavier, utilisez les flèches.",
+    "storyTitle": "La pièce",
+    "specsTitle": "Caractéristiques",
+    "centralStone": "Pierre principale",
+    "accentStones": "Pierres d’accompagnement",
+    "stone": "Pierre",
+    "shape": "Forme",
+    "weight": "Poids",
+    "colour": "Couleur",
+    "clarity": "Pureté",
+    "cut": "Qualité de taille",
+    "origin": "Origine",
+    "treatment": "Traitement",
+    "count": "Nombre",
+    "diameter": "Diamètre",
+    "carats": "{value} ct",
+    "millimetres": "{value} mm",
+    "metalTitle": "Métal",
+    "metalWeight": "Poids du métal",
+    "grams": "{value} g",
+    "certificate": "Certificat",
+    "certificateValue": "Laboratoire gemmologique indépendant, n° {number}",
+    "provenanceTitle": "Provenance",
+    "provenanceText": "Chaque pierre majeure est tracée de la mine au sertissage. Le numéro de parcours figure aussi sur l’écrin, sous forme de code QR.",
+    "provenanceCode": "Parcours n° {code}",
+    "provenanceLink": "Suivre le parcours",
+    "promise": "Garantie à vie · Retours sous trente jours · Écrin et certificat inclus",
+    "related": "Dans la même collection",
+    "metaTitle": "{name} — {summary}",
+    "journeyMine": "Extraction",
+    "journeyCut": "Taille",
+    "journeyAtelier": "Sertissage",
+    "journeyCutValue": "Lapidaire partenaire, sous contrôle indépendant",
+    "journeyAtelierValue": "Notre atelier, Montréal"
   }
 }
