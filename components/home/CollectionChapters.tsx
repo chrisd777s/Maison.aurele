@@ -1,14 +1,17 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { JewelArt } from "@/components/art/JewelArt";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { getCollections, getProducts } from "@/lib/commerce";
+import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 
 /** Les trois collections en chapitres éditoriaux, image et texte en alternance. */
 export async function CollectionChapters() {
   const t = await getTranslations("Home");
   const c = await getTranslations("Collection");
+  const p = await getTranslations("Product");
+  const m = await getTranslations("Materials");
   const locale = (await getLocale()) as Locale;
   const collections = await getCollections(locale);
   const chapters = await Promise.all(
@@ -40,11 +43,17 @@ export async function CollectionChapters() {
                 data-reveal
                 className={`col-span-12 lg:col-span-7 ${flip ? "lg:order-2 lg:col-start-6" : ""}`}
               >
-                <JewelArt
-                  product={cover}
-                  locale={locale}
-                  uid={`ch-${collection.slug}`}
-                  className="block aspect-[4/5] w-full sm:aspect-[5/4]"
+                <Image
+                  src={renderSrc(cover.slug, cover.metals[0]!.id)}
+                  alt={p("renderAlt", {
+                    name: cover.name,
+                    metal: m(`metals.${cover.metals[0]!.id}`).toLocaleLowerCase(locale),
+                    summary: cover.summary,
+                  })}
+                  width={RENDER_WIDTH}
+                  height={RENDER_HEIGHT}
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="block aspect-[4/5] w-full bg-surface object-contain sm:aspect-[5/4]"
                 />
               </div>
             )}

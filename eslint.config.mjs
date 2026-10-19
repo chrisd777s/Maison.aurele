@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
   },
   globalIgnores([
     ".next/**",
+    ".next-affiches/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

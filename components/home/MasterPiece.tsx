@@ -1,14 +1,17 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { JewelArt } from "@/components/art/JewelArt";
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { getProducts } from "@/lib/commerce";
 import { formatPrice } from "@/lib/format";
+import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 
 /** La pièce d'exception, présentée dans la pénombre quel que soit le mode. */
 export async function MasterPiece() {
   const t = await getTranslations("Home");
+  const p = await getTranslations("Product");
+  const m = await getTranslations("Materials");
   const locale = (await getLocale()) as Locale;
   const piece = (await getProducts(locale)).find((p) => p.featured);
   if (!piece) return null;
@@ -20,12 +23,17 @@ export async function MasterPiece() {
           className="col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-5 lg:col-start-2"
           data-reveal
         >
-          <JewelArt
-            product={piece}
-            view="detail"
-            locale={locale}
-            uid="exception"
-            className="block aspect-square w-full"
+          <Image
+            src={renderSrc(piece.slug, piece.metals[0]!.id)}
+            alt={p("renderAlt", {
+              name: piece.name,
+              metal: m(`metals.${piece.metals[0]!.id}`).toLocaleLowerCase(locale),
+              summary: piece.summary,
+            })}
+            width={RENDER_WIDTH}
+            height={RENDER_HEIGHT}
+            sizes="(min-width: 1024px) 42vw, 80vw"
+            className="block aspect-[4/5] w-full object-contain"
           />
         </div>
         <div className="col-span-12 lg:col-span-4 lg:col-start-8" data-reveal>

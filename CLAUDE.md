@@ -7,7 +7,8 @@ Lire `AGENTS.md` : cette version de Next.js diffère des connaissances d'entraî
 
 - Phase 1 (fondations : tokens, typographie, layout, i18n, navigation, pied de page) : faite.
 - Phase 2 (catalogue de 15 pièces, CommerceProvider local + Shopify, collections, fiches produit, loupe) : faite.
-- Phases suivantes : 3 3D · 4 configurateur · 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
+- Phase 3 (3D procédurale : bague d'accueil, visionneuse, rendus fixes) : faite.
+- Phases suivantes : 4 configurateur · 5 commerce · 6 éditorial · 7 perf/a11y/SEO.
   Après chaque phase : captures Playwright aux 4 largeurs, relecture, commit, puis attendre l'OK de l'utilisateur.
 
 ## Commandes
@@ -25,7 +26,10 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - Catalogue : `data/collections.ts`, `data/products.ts` (textes FR/EN dans les données ; descriptions de 60 à 90 mots, testé). Interface `CommerceProvider` dans `lib/commerce/types.ts` ; accès mis en cache via `lib/commerce/index.ts` (`"use cache"`), fournisseur choisi par `COMMERCE_PROVIDER` (`local` par défaut, `shopify`).
 - Shopify : `lib/commerce/shopify/` (requêtes Storefront, métadonnées sous l'espace `aurele`, conversion pure testée dans `tests/unit/shopify.test.ts`).
 - Slugs inconnus : le proxy (`proxy.ts`) renvoie un vrai 404 avant le rendu (sinon le rendu partiel répond 200). Toute nouvelle route dynamique de catalogue doit y être ajoutée.
-- Visuels provisoires : `components/art/JewelArt.tsx` (SVG procéduraux : vue de face, détail, planche), remplacés par les rendus 3D en phase 3.
+- 3D : `lib/three/gem-geometry.ts` (tailles facettées, testées : solides fermés), `components/three/` (studio procédural sans HDR dont la boîte principale suit le curseur ou le gyroscope, matières, modèles par `visual.form`, canevas). Diamant/saphir en réfraction (`MeshRefractionMaterial`) au niveau « complet » ; niveaux choisis par `lib/device/capabilities.ts`.
+- `LazyJewel` : image fixe d'abord (LCP), 3D chargée au repos puis fondu ; pause hors écran ; Three.js jamais dans le bundle initial.
+- Rendus fixes : `public/renders/<slug>--<métal>.webp`, générés par `npm run renders` (studio `app/studio-affiches`, construit à part dans `.next-affiches`, n'existe qu'avec `POSTER_STUDIO=1`). À relancer après toute modification d'un modèle, d'une matière ou du catalogue.
+- Illustrations SVG (`components/art/JewelArt.tsx`) : vues « détail de la pierre » et « planche d'atelier ».
 - Ambiance de collection : `data-ambiance` sur un élément de la page teinte `--fond` de toute la page (`:root:has(...)`). `.scene-nuit` force une section en pénombre.
 
 ## Conventions

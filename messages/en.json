@@ -88,7 +88,10 @@
     "appointmentCta": "Reserve a moment",
     "exceptionEyebrow": "Exceptional piece",
     "exceptionCta": "Discover the piece",
-    "chapterCta": "Enter the collection"
+    "chapterCta": "Enter the collection",
+    "tiltPrompt": "Tilt to play with the light",
+    "tiltActive": "The light follows your gesture",
+    "heroAlt": "Aube Première ring in white gold: a 1.02-carat diamond on six fine prongs, turning slowly in the light."
   },
   "NotFound": {
     "eyebrow": "Error 404",
@@ -199,6 +202,10 @@
     "journeyCut": "Cutting",
     "journeyAtelier": "Setting",
     "journeyCutValue": "Partner lapidary, independently verified",
-    "journeyAtelierValue": "Our atelier, Montréal"
+    "journeyAtelierValue": "Our atelier, Montréal",
+    "renderAlt": "{name} in {metal}, three-quarter view: {summary}.",
+    "view3d": "3D view",
+    "viewer3dHint": "Turn the piece with your finger, mouse or keyboard; pinch to come closer.",
+    "viewPhoto": "Render"
   }
 }

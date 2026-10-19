@@ -1,12 +1,15 @@
 import type { CSSProperties } from "react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { SplitLetters } from "@/components/motion/SplitLetters";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { RingSketch } from "./RingSketch";
+import { getProduct } from "@/lib/commerce";
+import type { Locale } from "@/i18n/routing";
+import { HeroJewel } from "./HeroJewel";
 
 export async function Hero() {
   const t = await getTranslations("Home");
+  const ring = await getProduct("aube-premiere", (await getLocale()) as Locale);
 
   return (
     <section className="relative isolate overflow-hidden">
@@ -16,7 +19,7 @@ export async function Hero() {
         <Eyebrow className="col-span-12 row-start-1 lg:col-span-6">{t("heroEyebrow")}</Eyebrow>
 
         <div className="col-span-12 row-start-2 flex items-center justify-center lg:col-span-6 lg:col-start-7 lg:row-start-2">
-          <RingSketch className="sketch-entree h-[min(30svh,15rem)] w-auto text-accent-encre lg:h-[min(48svh,32rem)]" />
+          {ring && <HeroJewel product={ring} />}
         </div>
 
         <div className="col-span-12 row-start-3 self-end">

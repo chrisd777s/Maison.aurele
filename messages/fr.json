@@ -88,7 +88,10 @@
     "appointmentCta": "Réserver un moment",
     "exceptionEyebrow": "Pièce d’exception",
     "exceptionCta": "Découvrir la pièce",
-    "chapterCta": "Entrer dans la collection"
+    "chapterCta": "Entrer dans la collection",
+    "tiltPrompt": "Inclinez pour faire jouer la lumière",
+    "tiltActive": "La lumière suit votre geste",
+    "heroAlt": "Bague Aube Première en or blanc : un diamant de 1,02 carat sur six griffes fines, qui tourne lentement dans la lumière."
   },
   "NotFound": {
     "eyebrow": "Erreur 404",
@@ -199,6 +202,10 @@
     "journeyCut": "Taille",
     "journeyAtelier": "Sertissage",
     "journeyCutValue": "Lapidaire partenaire, sous contrôle indépendant",
-    "journeyAtelierValue": "Notre atelier, Montréal"
+    "journeyAtelierValue": "Notre atelier, Montréal",
+    "renderAlt": "{name} en {metal}, vue de trois quarts : {summary}.",
+    "view3d": "Vue 3D",
+    "viewer3dHint": "Faites tourner la pièce du doigt, à la souris ou au clavier ; pincez pour approcher.",
+    "viewPhoto": "Rendu"
   }
 }
