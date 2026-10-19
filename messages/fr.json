@@ -1,0 +1,96 @@
+{
+  "Metadata": {
+    "titleDefault": "Maison Aurèle — Haute joaillerie, Montréal & Paris",
+    "titleTemplate": "%s — Maison Aurèle",
+    "description": "Haute joaillerie contemporaine créée dans notre atelier du Vieux-Montréal. Pierres tracées de la mine au sertissage, or recyclé certifié. Salon privé à Paris, sur rendez-vous.",
+    "homeTitle": "La lumière, captive."
+  },
+  "Header": {
+    "skipToContent": "Aller au contenu",
+    "home": "Maison Aurèle — accueil",
+    "mainNav": "Navigation principale",
+    "secondaryNav": "Accès rapides",
+    "menu": "Menu",
+    "closeMenu": "Fermer le menu",
+    "menuTitle": "Navigation"
+  },
+  "Nav": {
+    "collections": "Collections",
+    "aube": "Aube",
+    "maree": "Marée",
+    "obsidienne": "Obsidienne",
+    "atelier": "L’Atelier",
+    "savoirFaire": "Savoir-faire",
+    "maison": "La Maison",
+    "journal": "Journal",
+    "provenance": "Provenance",
+    "rendezVous": "Rendez-vous privé",
+    "rendezVousCourt": "Rendez-vous",
+    "ecrin": "L’Écrin",
+    "guide": "Guide des tailles"
+  },
+  "Collections": {
+    "aube": "La lumière du premier matin",
+    "maree": "La lumière sur l’eau",
+    "obsidienne": "La lumière qu’on retient"
+  },
+  "Footer": {
+    "signature": "La lumière, captive.",
+    "intro": "Haute joaillerie contemporaine, dessinée et façonnée à la main dans notre atelier du Vieux-Montréal depuis 2011.",
+    "placesTitle": "Nous rencontrer",
+    "montrealLabel": "Atelier & boutique",
+    "montrealHours": "Du mardi au samedi, de 10 h à 18 h",
+    "parisLabel": "Salon privé",
+    "parisHours": "Sur rendez-vous uniquement",
+    "houseTitle": "La Maison",
+    "serviceTitle": "Service",
+    "legalTitle": "Informations",
+    "warranty": "Garantie à vie",
+    "returns": "Retours & échanges",
+    "legalNotice": "Mentions légales",
+    "privacy": "Confidentialité",
+    "terms": "Conditions de vente",
+    "writeUs": "Nous écrire",
+    "commitments": "Or recyclé certifié · Pierres tracées de la mine au sertissage",
+    "copyright": "© Maison Aurèle, depuis 2011",
+    "preferences": "Préférences"
+  },
+  "Theme": {
+    "label": "Ambiance",
+    "jour": "Salon de jour",
+    "nuit": "Salon de nuit",
+    "switchTo": "Passer au {mode}"
+  },
+  "Locale": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "English",
+    "switchTo": "Lire ce site en français"
+  },
+  "Home": {
+    "heroEyebrow": "Haute joaillerie · Montréal — Paris",
+    "heroTitle": "La lumière, captive.",
+    "heroLede": "Depuis 2011, notre atelier du Vieux-Montréal façonne des pièces qui retiennent la lumière — et la rendent au moindre geste.",
+    "heroCta": "Découvrir les collections",
+    "heroCtaSecondary": "Prendre rendez-vous",
+    "scrollHint": "Faire défiler",
+    "manifestoEyebrow": "Manifeste",
+    "manifestoTitle": "Une pierre n’a pas d’éclat propre.",
+    "manifesto1": "Elle reçoit la lumière, la plie, la fractionne, puis la rend autrement. Tout notre métier tient dans cet instant.",
+    "manifesto2": "Nous dessinons chaque pièce autour de ce geste : l’angle d’une griffe, la hauteur d’un chaton, l’épaisseur d’un anneau. Rien n’est décoratif ; tout sert la lumière.",
+    "manifesto3": "Nos pierres sont tracées de la mine au sertissage, notre or est recyclé et certifié. Une beauté dont on connaît l’origine se porte plus légèrement.",
+    "manifestoSignature": "Hélène Aurèle, fondatrice",
+    "collectionsEyebrow": "Trois collections",
+    "collectionsTitle": "Trois façons de tenir la lumière.",
+    "appointmentEyebrow": "Salon privé",
+    "appointmentTitle": "Une conversation, avant tout.",
+    "appointmentText": "À Montréal, à Paris ou à distance, une heure rien que pour vous : essayer, comprendre une pierre, imaginer une création. Sans engagement, toujours.",
+    "appointmentCta": "Réserver un moment"
+  },
+  "NotFound": {
+    "eyebrow": "Erreur 404",
+    "title": "Cette page s’est dérobée à la lumière.",
+    "text": "Elle a peut-être changé d’écrin. Revenez à l’accueil, ou laissez-vous guider par nos collections.",
+    "home": "Retour à l’accueil"
+  }
+}

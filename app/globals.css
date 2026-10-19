@@ -1,0 +1,426 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   Maison Aurèle — tokens
+   Couleurs de marque brutes, puis rôles sémantiques qui changent
+   avec le mode « Salon de nuit ». Aucune couleur en dur ailleurs.
+   ────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Marque */
+  --ivoire: #f6f1ea;
+  --onyx: #0e0d0c;
+  --champagne: #c2a36b; /* décoratif uniquement : 2,1:1 sur ivoire */
+  --pierre: #8c857c; /* décoratif uniquement : 3,2:1 sur ivoire */
+  --nacre: #ede6dc;
+  /* Variantes « encre » pour le texte et le focus (≥ 4,5:1 sur ivoire et nacre) */
+  --champagne-encre: #7e6331;
+  --pierre-encre: #6b655d;
+  /* Nuit */
+  --onyx-voile: #1a1917;
+  --onyx-filet: #2e2b28;
+
+  /* Rôles (jour) */
+  --fond: var(--ivoire);
+  --surface: var(--nacre);
+  --encre: var(--onyx);
+  --encre-douce: var(--pierre-encre);
+  --accent: var(--champagne);
+  --accent-encre: var(--champagne-encre);
+  --filet: color-mix(in oklab, var(--pierre) 35%, transparent);
+  --voile: color-mix(in oklab, var(--ivoire) 86%, transparent);
+
+  /* Mise en page */
+  --marge: clamp(1rem, 4.5vw, 6rem);
+  --gouttiere: clamp(1rem, 2.4vw, 2.5rem);
+  --section: clamp(6rem, 14vw, 13rem);
+  --entete: 4.5rem;
+
+  /* Mouvement */
+  --ease-maison: cubic-bezier(0.22, 1, 0.36, 1);
+  --duree-courte: 600ms;
+  --duree: 900ms;
+  --duree-longue: 1200ms;
+  --montee: 16px;
+
+  color-scheme: light;
+}
+
+/* Salon de nuit : préférence système, sauf choix explicite « jour » */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="jour"]) {
+    --fond: var(--onyx);
+    --surface: var(--onyx-voile);
+    --encre: var(--ivoire);
+    --encre-douce: var(--pierre);
+    --accent-encre: var(--champagne);
+    --filet: var(--onyx-filet);
+    --voile: color-mix(in oklab, var(--onyx) 84%, transparent);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="nuit"] {
+  --fond: var(--onyx);
+  --surface: var(--onyx-voile);
+  --encre: var(--ivoire);
+  --encre-douce: var(--pierre);
+  --accent-encre: var(--champagne);
+  --filet: var(--onyx-filet);
+  --voile: color-mix(in oklab, var(--onyx) 84%, transparent);
+  color-scheme: dark;
+}
+
+/* Tailwind ne connaît que ces couleurs : la palette par défaut est retirée. */
+@theme inline {
+  --color-*: initial;
+  --color-fond: var(--fond);
+  --color-surface: var(--surface);
+  --color-encre: var(--encre);
+  --color-encre-douce: var(--encre-douce);
+  --color-accent: var(--accent);
+  --color-accent-encre: var(--accent-encre);
+  --color-filet: var(--filet);
+  --color-voile: var(--voile);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), "Jost", system-ui, sans-serif;
+
+  --ease-maison: var(--ease-maison);
+  --spacing-marge: var(--marge);
+  --spacing-gouttiere: var(--gouttiere);
+  --spacing-section: var(--section);
+  --spacing-entete: var(--entete);
+}
+
+@theme {
+  /* Échelle typographique fluide (375 → 1920 px) */
+  --text-surtitre: 0.75rem;
+  --text-surtitre--letter-spacing: 0.2em;
+  --text-petit: 0.875rem;
+  --text-petit--line-height: 1.6;
+  --text-corps: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-corps--line-height: 1.7;
+  --text-chapeau: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --text-chapeau--line-height: 1.5;
+  --text-titre-3: clamp(1.625rem, 1.4rem + 0.9vw, 2.25rem);
+  --text-titre-3--line-height: 1.15;
+  --text-titre-2: clamp(2.25rem, 1.7rem + 2.4vw, 4rem);
+  --text-titre-2--line-height: 1.05;
+  --text-titre-1: clamp(3rem, 2rem + 4.6vw, 7rem);
+  --text-titre-1--line-height: 0.98;
+
+  --tracking-surtitre: 0.2em;
+  --tracking-marque: 0.32em;
+
+  --breakpoint-xs: 30rem;
+  --breakpoint-3xl: 112rem;
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    background: var(--fond);
+    color: var(--encre);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: calc(var(--entete) + 1rem);
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--fond);
+    font-family: var(--font-sans);
+    font-size: var(--text-corps);
+    font-weight: 350;
+    line-height: 1.7;
+    transition:
+      background-color var(--duree) var(--ease-maison),
+      color var(--duree) var(--ease-maison);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--champagne) 35%, transparent);
+    color: var(--encre);
+  }
+
+  /* Focus : anneau champagne (variante encre en jour, ≥ 3:1) + halo doux */
+  :focus-visible {
+    outline: 2px solid var(--accent-encre);
+    outline-offset: 4px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 7px color-mix(in oklab, var(--champagne) 22%, transparent);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+/* ── Composants transverses ──────────────────────────────────── */
+
+@layer components {
+  /* Grille éditoriale 12 colonnes */
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--gouttiere);
+    padding-inline: var(--marge);
+    max-width: 120rem;
+    margin-inline: auto;
+  }
+
+  .surtitre {
+    font-family: var(--font-sans);
+    font-size: var(--text-surtitre);
+    font-weight: 400;
+    letter-spacing: var(--tracking-surtitre);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Prix et chiffres : elzéviriens de Cormorant (Jost n'en a pas) */
+  .chiffres {
+    font-family: var(--font-display);
+    font-variant-numeric: oldstyle-nums proportional-nums;
+  }
+
+  /* Lien éditorial : soulignement fin qui se dessine */
+  .lien-fin {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--duree-courte) var(--ease-maison);
+    padding-bottom: 0.15em;
+  }
+  .lien-fin:hover,
+  .lien-fin[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+
+  .filet {
+    height: 1px;
+    border: 0;
+    background: var(--filet);
+  }
+}
+
+/* ── Mouvement ───────────────────────────────────────────────── */
+
+/* Révélation au scroll : n'agit que si JS est présent (classe posée dans <head>) */
+.js [data-reveal] {
+  opacity: 0;
+  translate: 0 var(--montee);
+  transition:
+    opacity var(--duree-longue) var(--ease-maison),
+    translate var(--duree-longue) var(--ease-maison);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+.js [data-reveal][data-visible] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Titre révélé lettre par lettre */
+.lettre {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 0.12em;
+  filter: blur(6px);
+  animation: lettre-apparait var(--duree-longue) var(--ease-maison) forwards;
+  animation-delay: calc(280ms + var(--i) * 42ms);
+}
+@keyframes lettre-apparait {
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js [data-reveal] {
+    translate: none;
+  }
+  .lettre {
+    filter: none;
+    translate: none;
+  }
+}
+
+/* ── En-tête ─────────────────────────────────────────────────── */
+
+/* Le filet inférieur apparaît dès qu'on quitte le haut de page (sans JS). */
+.entete {
+  box-shadow: 0 1px 0 transparent;
+}
+@supports (animation-timeline: scroll()) {
+  .entete {
+    animation: entete-filet linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 120px;
+  }
+  @keyframes entete-filet {
+    to {
+      box-shadow: 0 1px 0 var(--filet);
+    }
+  }
+}
+
+.panneau-collections {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--fond);
+  border-block: 1px solid var(--filet);
+  animation: panneau-ouvre var(--duree-courte) var(--ease-maison);
+}
+@keyframes panneau-ouvre {
+  from {
+    opacity: 0;
+    translate: 0 -8px;
+  }
+}
+
+/* Menu plein écran (dialog natif) */
+.menu-plein {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow-y: auto;
+  background: var(--fond);
+  color: var(--encre);
+  opacity: 0;
+  transition:
+    opacity var(--duree-courte) var(--ease-maison),
+    display var(--duree-courte) allow-discrete,
+    overlay var(--duree-courte) allow-discrete;
+}
+.menu-plein[open] {
+  opacity: 1;
+}
+@starting-style {
+  .menu-plein[open] {
+    opacity: 0;
+  }
+}
+.menu-plein::backdrop {
+  background: transparent;
+}
+:root:has(.menu-plein[open]) {
+  overflow: hidden;
+}
+
+/* ── Accueil ─────────────────────────────────────────────────── */
+
+.halo {
+  background:
+    radial-gradient(
+      48rem 36rem at 72% 42%,
+      color-mix(in oklab, var(--champagne) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      28rem 22rem at 76% 38%,
+      color-mix(in oklab, var(--fond) 70%, white),
+      transparent 70%
+    );
+}
+@media (max-width: 63.99rem) {
+  .halo {
+    background: radial-gradient(
+      30rem 26rem at 50% 34%,
+      color-mix(in oklab, var(--champagne) 16%, transparent),
+      transparent 70%
+    );
+  }
+}
+
+.sketch-entree {
+  opacity: 0;
+  animation: sketch-apparait 1800ms var(--ease-maison) 200ms forwards;
+}
+@keyframes sketch-apparait {
+  from {
+    opacity: 0;
+    scale: 0.97;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+.eclat {
+  transform-origin: 112px 52px;
+  animation: eclat 4.8s var(--ease-maison) 1.6s infinite;
+  opacity: 0;
+}
+@keyframes eclat {
+  0%,
+  70%,
+  100% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  80% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* Salon : pénombre onyx et lumière de lampe, quel que soit le mode */
+.salon {
+  background:
+    radial-gradient(
+      60% 45% at 68% 30%,
+      color-mix(in oklab, var(--champagne) 38%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(90% 70% at 30% 100%, var(--onyx-filet), transparent 70%), var(--onyx);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eclat {
+    animation: none;
+    opacity: 1;
+  }
+}

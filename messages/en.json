@@ -1,0 +1,96 @@
+{
+  "Metadata": {
+    "titleDefault": "Maison Aurèle — Fine Jewellery, Montréal & Paris",
+    "titleTemplate": "%s — Maison Aurèle",
+    "description": "Contemporary fine jewellery made in our Old Montréal atelier. Stones traced from mine to setting, certified recycled gold. Private salon in Paris, by appointment.",
+    "homeTitle": "Light, held captive."
+  },
+  "Header": {
+    "skipToContent": "Skip to content",
+    "home": "Maison Aurèle — home",
+    "mainNav": "Main navigation",
+    "secondaryNav": "Quick access",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "menuTitle": "Navigation"
+  },
+  "Nav": {
+    "collections": "Collections",
+    "aube": "Aube",
+    "maree": "Marée",
+    "obsidienne": "Obsidienne",
+    "atelier": "L’Atelier",
+    "savoirFaire": "Craftsmanship",
+    "maison": "The Maison",
+    "journal": "Journal",
+    "provenance": "Provenance",
+    "rendezVous": "Private appointment",
+    "rendezVousCourt": "Appointment",
+    "ecrin": "The Écrin",
+    "guide": "Ring size guide"
+  },
+  "Collections": {
+    "aube": "The light of first morning",
+    "maree": "Light upon the water",
+    "obsidienne": "The light one keeps"
+  },
+  "Footer": {
+    "signature": "Light, held captive.",
+    "intro": "Contemporary fine jewellery, drawn and made by hand in our Old Montréal atelier since 2011.",
+    "placesTitle": "Visit us",
+    "montrealLabel": "Atelier & boutique",
+    "montrealHours": "Tuesday to Saturday, 10 a.m. to 6 p.m.",
+    "parisLabel": "Private salon",
+    "parisHours": "By appointment only",
+    "houseTitle": "The Maison",
+    "serviceTitle": "Client care",
+    "legalTitle": "Information",
+    "warranty": "Lifetime warranty",
+    "returns": "Returns & exchanges",
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy",
+    "terms": "Terms of sale",
+    "writeUs": "Write to us",
+    "commitments": "Certified recycled gold · Stones traced from mine to setting",
+    "copyright": "© Maison Aurèle, since 2011",
+    "preferences": "Preferences"
+  },
+  "Theme": {
+    "label": "Ambience",
+    "jour": "Day salon",
+    "nuit": "Night salon",
+    "switchTo": "Switch to {mode}"
+  },
+  "Locale": {
+    "label": "Language",
+    "fr": "Français",
+    "en": "English",
+    "switchTo": "Read this site in English"
+  },
+  "Home": {
+    "heroEyebrow": "Fine jewellery · Montréal — Paris",
+    "heroTitle": "Light, held captive.",
+    "heroLede": "Since 2011, our Old Montréal atelier has shaped pieces that hold the light — and give it back at the slightest gesture.",
+    "heroCta": "Discover the collections",
+    "heroCtaSecondary": "Book an appointment",
+    "scrollHint": "Scroll",
+    "manifestoEyebrow": "Manifesto",
+    "manifestoTitle": "A stone has no brilliance of its own.",
+    "manifesto1": "It receives the light, bends it, breaks it apart, then returns it transformed. Our entire craft lives in that instant.",
+    "manifesto2": "Every piece is drawn around that gesture: the angle of a prong, the height of a setting, the weight of a band. Nothing is ornamental; everything serves the light.",
+    "manifesto3": "Our stones are traced from mine to setting, and our gold is recycled and certified. Beauty whose origins are known is worn more lightly.",
+    "manifestoSignature": "Hélène Aurèle, founder",
+    "collectionsEyebrow": "Three collections",
+    "collectionsTitle": "Three ways of holding the light.",
+    "appointmentEyebrow": "Private salon",
+    "appointmentTitle": "A conversation, first of all.",
+    "appointmentText": "In Montréal, in Paris or from afar, an hour that is entirely yours: to try on, to understand a stone, to imagine a commission. Never any obligation.",
+    "appointmentCta": "Reserve a moment"
+  },
+  "NotFound": {
+    "eyebrow": "Error 404",
+    "title": "This page has slipped out of the light.",
+    "text": "Perhaps it has found another case. Return to the home page, or let our collections guide you.",
+    "home": "Back to home"
+  }
+}
