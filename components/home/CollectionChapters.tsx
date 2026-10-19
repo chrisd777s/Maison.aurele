@@ -55,7 +55,10 @@ export async function CollectionChapters() {
               <p className="surtitre text-encre-douce">
                 {c("eyebrow", { number: String(collection.order).padStart(2, "0") })}
               </p>
-              <h3 id={`chapitre-${collection.slug}`} className="mt-6 text-titre-1">
+              <h3
+                id={`chapitre-${collection.slug}`}
+                className="mt-6 text-titre-1 lg:text-[clamp(3rem,1.6rem+4vw,5.5rem)]"
+              >
                 {collection.name}
               </h3>
               <p className="mt-4 font-display text-chapeau text-encre-douce italic">
