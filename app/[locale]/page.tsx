@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { AppointmentCall } from "@/components/home/AppointmentCall";
 import { CollectionChapters } from "@/components/home/CollectionChapters";
+import { CraftTeaser } from "@/components/home/CraftTeaser";
 import { Hero } from "@/components/home/Hero";
 import { Manifesto } from "@/components/home/Manifesto";
 import { MasterPiece } from "@/components/home/MasterPiece";
@@ -25,6 +26,7 @@ export default function HomePage() {
       <Manifesto />
       <CollectionChapters />
       <MasterPiece />
+      <CraftTeaser />
       <AppointmentCall />
     </>
   );

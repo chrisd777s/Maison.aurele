@@ -91,7 +91,11 @@
     "chapterCta": "Enter the collection",
     "tiltPrompt": "Tilt to play with the light",
     "tiltActive": "The light follows your gesture",
-    "heroAlt": "Aube Première ring in white gold: a 1.02-carat diamond on six fine prongs, turning slowly in the light."
+    "heroAlt": "Aube Première ring in white gold: a 1.02-carat diamond on six fine prongs, turning slowly in the light.",
+    "craftEyebrow": "Craftsmanship",
+    "craftTitle": "Six gestures, one light.",
+    "craftText": "From the first pencil line to the last pass of the silk brush, every piece goes through six stages and as many hands, without ever leaving our Montréal atelier.",
+    "craftCta": "Follow the making of a ring"
   },
   "NotFound": {
     "eyebrow": "Error 404",
@@ -496,5 +500,178 @@
       "next": "The atelier will write to you within one business day to confirm the handover date.",
       "nextDeposit": "The atelier will write to you within one business day to confirm the handover date and the settlement of the balance."
     }
+  },
+  "Craft": {
+    "metaTitle": "Craftsmanship: six stages, from sketch to polish",
+    "metaDescription": "Sketch, gouache, wax, casting, setting, polishing: the making of a Maison Aurèle ring, stage by stage, in our Old Montréal atelier.",
+    "eyebrow": "Craftsmanship",
+    "title": "Six gestures, one light.",
+    "lede": "A Maison ring takes an average of one hundred and twenty hours of work. Here, stage by stage, is how a pencil line becomes a stone that holds the light.",
+    "sequenceTitle": "The six stages of creation",
+    "stepOf": "Stage {n} of {total}",
+    "duration": "Time",
+    "tools": "Tools",
+    "handsEyebrow": "The hands",
+    "handsTitle": "Fourteen artisans, a single atelier.",
+    "handsText": "Modellers, casters, setters, polishers: each signs their stage in the piece’s register. Their names appear on the provenance record you receive with it.",
+    "since": "at the atelier since {year}",
+    "closingTitle": "Your turn to draw.",
+    "closingText": "Compose your ring in L’Atelier, or come and see the workbench up close: our Montréal and Paris salons welcome you by appointment.",
+    "closingAtelier": "Compose my ring",
+    "closingVisit": "Visit the atelier"
+  },
+  "House": {
+    "metaTitle": "The Maison: history, founder and commitments",
+    "metaDescription": "Founded in 2011 on rue Saint-Paul by Hélène Aurèle, Maison Aurèle handcrafts contemporary fine jewellery with traced stones and recycled gold.",
+    "eyebrow": "The Maison",
+    "title": "A light born on rue Saint-Paul.",
+    "lede": "Since 2011, in a former warehouse in Old Montréal, fourteen artisans have worked a single material: light, and the way a stone holds it.",
+    "founderEyebrow": "The founder",
+    "timelineEyebrow": "Milestones",
+    "timelineTitle": "Fifteen years, step by step.",
+    "valuesEyebrow": "Our commitments",
+    "valuesTitle": "What will not change.",
+    "figuresTitle": "The Maison in figures",
+    "closingTitle": "Come in.",
+    "closingText": "The atelier on rue Saint-Paul and the salon on rue de la Paix welcome you by appointment, to look at stones in daylight, with no obligation.",
+    "closingVisit": "Book an appointment",
+    "closingCraft": "Craftsmanship",
+    "closingProvenance": "Provenance"
+  },
+  "Provenance": {
+    "metaTitle": "Provenance: the journey of every stone",
+    "metaDescription": "From mine to atelier: find the origin, cutting, setting date and artisan of every Maison Aurèle piece with the code printed on its box.",
+    "eyebrow": "Provenance",
+    "title": "Every stone has an address.",
+    "lede": "We know where each of our principal stones comes from, where it was cut, on what day it was set and by whom. The code printed on your box opens that journey to you.",
+    "lookupLabel": "Provenance code",
+    "lookupSubmit": "Trace",
+    "lookupHint": "The code is printed under the box, next to the QR code. Example: AU101-0187.",
+    "lookupUnknown": "This code does not match any piece. Please check it, or write to us.",
+    "commitmentEyebrow": "Our commitment",
+    "commitmentTitle": "Three stages, all known.",
+    "stages": {
+      "origin": {
+        "title": "Origin",
+        "text": "The region of the mine or the pearl farm, never an anonymous source. We turn down any stone whose journey cannot be documented."
+      },
+      "cutting": {
+        "title": "Cutting",
+        "text": "The cutting workshop where the stone received its facets or, for pearls, the house that sorted and matched them."
+      },
+      "atelier": {
+        "title": "The atelier",
+        "text": "The day of setting in Montréal, the name of the artisan who did it and that of the polisher who finished the piece."
+      }
+    },
+    "gold": "Metal follows the same rule: our gold and platinum are recycled and certified, and the number of the lot used appears on every record.",
+    "registerEyebrow": "The register",
+    "registerTitle": "The pieces in the collections.",
+    "registerText": "Every piece shown on this website has its journey. The complete register of pieces sold is kept at the atelier.",
+    "pieceMetaTitle": "{name}: journey {code}",
+    "pieceMetaDescription": "Origin, cutting, setting and artisans of the {name}, from the mine to our Montréal atelier.",
+    "pieceEyebrow": "Journey no. {code}",
+    "journeyTitle": "Journey of the principal stone: {stone}",
+    "mapLabel": "Map of the journey: {stops}.",
+    "stops": {
+      "origine": {
+        "stone": "Mine",
+        "pearl": "Pearl farm"
+      },
+      "taille": {
+        "stone": "Cutting",
+        "pearl": "Sorting and matching"
+      },
+      "atelier": {
+        "stone": "Setting",
+        "pearl": "Mounting"
+      }
+    },
+    "setOn": "Set on {date} by {name}.",
+    "accentsTitle": "Accent stones",
+    "recordTitle": "Provenance record",
+    "recordCode": "Code",
+    "recordStone": "Principal stone",
+    "recordSetAt": "Setting date",
+    "recordSetter": "Setting",
+    "recordPolisher": "Polishing",
+    "recordMetal": "Metal",
+    "metalLot": "Recycled and certified, lot {lot}",
+    "recordNote": "This record describes the collection’s reference piece. The record of your own piece, with its code, comes with its certificate in the box.",
+    "seePiece": "See the piece",
+    "seeInSalon": "See it at the salon"
+  },
+  "SizeGuide": {
+    "metaTitle": "Ring size guide: measure on screen",
+    "metaDescription": "Find your ring size in two minutes: calibrate your screen with a bank card, place a ring, read its Canadian, French and British size.",
+    "eyebrow": "Size guide",
+    "title": "Your size, in two minutes.",
+    "lede": "A bank card and a ring that fits you: that is all you need. The card is the yardstick, because it is the same size all over the world.",
+    "toolTitle": "Measure on screen",
+    "stepsLabel": "Measuring steps",
+    "steps": {
+      "carte": "Calibrate the screen",
+      "bague": "Measure a ring"
+    },
+    "cardTitle": "Hold a card against the screen.",
+    "cardText": "Place a bank, loyalty or ID card over the frame below, corner to corner, then adjust the frame until its edges exactly meet those of the card.",
+    "cardTextPortrait": "Hold a bank, loyalty or ID card upright over the frame below, then adjust the frame until its edges exactly meet those of the card.",
+    "cardAdjust": "Frame size",
+    "cardValue": "{mm} mm frame shown over {px} pixels",
+    "cardConfirm": "The frame matches my card",
+    "cardKeep": "Keep the previous calibration",
+    "smaller": "Smaller",
+    "larger": "Larger",
+    "ringTitle": "Place a ring on the circle.",
+    "ringText": "Choose a ring worn on the intended finger. Lay it flat on the screen and adjust the circle until it exactly follows the inner edge of the band.",
+    "ringAdjust": "Circle diameter",
+    "ringValue": "Inner diameter {mm} mm",
+    "recalibrate": "Calibrate again",
+    "resultTitle": "Your size",
+    "outOfRange": "This measurement is outside our size range. Write to us: the atelier resizes beyond it.",
+    "systemCaUs": "Canada · US",
+    "systemFr": "France",
+    "systemUk": "United Kingdom",
+    "diameter": "Inner diameter",
+    "circumference": "Finger circumference",
+    "diameterShort": "Ø (mm)",
+    "circumferenceShort": "Circ. (mm)",
+    "mm": "{value} mm",
+    "accuracy": "Accurate to about half a size. Between two sizes, choose the larger. For an engagement ring, we will gladly send you a ring sizer, free of charge.",
+    "sizerCta": "Receive a free ring sizer",
+    "sizerSubject": "Ring sizer request",
+    "ringsCta": "See the rings",
+    "tipsTitle": "Advice",
+    "tipsLede": "A finger changes over the course of the day. A few precautions spare you a resizing.",
+    "tip1": "Measure at the end of the day, at room temperature: fingers are slimmer in the morning and in cold weather.",
+    "tip2": "If your knuckle is wider than the base of your finger, choose a size that slips over the knuckle without forcing.",
+    "tip3": "A wide band (over 4 mm) fits more snugly: go half a size up.",
+    "tip4": "For a surprise, discreetly borrow a ring worn on the same finger, or ask us for advice.",
+    "tableTitle": "Conversions",
+    "tableCaption": "Ring sizes in the three systems, with inner diameter and finger circumference.",
+    "otherTitle": "Necklaces and bracelets",
+    "necklaceTitle": "Chain length",
+    "necklaceText": "40 cm sits at the base of the neck, 42 cm on the collarbone, 45 cm just below; 60 cm falls onto the chest. Every chain has an intermediate ring to shorten it by 2 cm.",
+    "braceletTitle": "Wrist size",
+    "braceletText": "Measure your wrist just above the bone with a soft tape, then add 1 cm for a close-fitting bracelet, 2 cm for one that moves freely."
+  },
+  "Journal": {
+    "metaTitle": "Journal: stories of stones and atelier advice",
+    "metaDescription": "Jewellery care, choosing a diamond, the history of the pearl: writings from the Maison Aurèle atelier.",
+    "eyebrow": "Journal",
+    "title": "Atelier notes.",
+    "lede": "What stones teach us, and what we advise those who wear them. Written by the people who work them.",
+    "listLabel": "Articles",
+    "minutes": "{count, plural, one {# minute} other {# minutes}} read",
+    "by": "By {name}",
+    "relatedEyebrow": "In this article",
+    "relatedTitle": "The pieces mentioned",
+    "moreTitle": "Read next"
+  },
+  "Legal": {
+    "eyebrow": "Information",
+    "updated": "Updated {date}",
+    "contents": "Contents",
+    "others": "More information"
   }
 }

@@ -1,4 +1,5 @@
 import { collections } from "@/data/collections";
+import { articleIndex } from "@/data/journal-index";
 import { products } from "@/data/products";
 
 /**
@@ -8,3 +9,5 @@ import { products } from "@/data/products";
  */
 export const knownCollections = new Set<string>(collections.map((c) => c.slug));
 export const knownProducts = new Set<string>(products.map((p) => p.slug));
+export const knownProvenanceCodes = new Set<string>(products.map((p) => p.provenanceCode));
+export const knownArticles = new Set<string>(articleIndex.map((a) => a.slug));

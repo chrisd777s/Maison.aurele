@@ -34,6 +34,7 @@
   --perle: #f6f0ea;
   --perle-lustre: #e6d6d0;
   --onyx-pierre: #121213;
+  --cire: #5f8573; /* cire de sculpture verte (Savoir-faire) */
 
   /* Rôles (jour) */
   --fond: var(--ivoire);
@@ -594,4 +595,151 @@
 }
 .curseur:active::-webkit-slider-thumb {
   transform: scale(1.12);
+}
+
+/* ── Savoir-faire : séquence épinglée ────────────────────────── */
+
+/* Sans JS ou sur mobile : chaque étape porte sa propre illustration.
+   Avec JS sur grand écran : une scène collante superpose les six calques. */
+.sequence-scene {
+  display: none;
+}
+@media (min-width: 64rem) {
+  .js .sequence-scene {
+    display: block;
+  }
+  .js .sequence .etape-art {
+    display: none;
+  }
+  .sequence [data-scene] [data-etape],
+  .sequence [data-legende] {
+    opacity: 0;
+    transition: opacity var(--duree) var(--ease-maison);
+  }
+  .sequence[data-actif="croquis"] [data-scene] [data-etape="croquis"],
+  .sequence[data-actif="croquis"] [data-legende="croquis"],
+  .sequence[data-actif="gouache"] [data-scene] [data-etape="gouache"],
+  .sequence[data-actif="gouache"] [data-legende="gouache"],
+  .sequence[data-actif="cire"] [data-scene] [data-etape="cire"],
+  .sequence[data-actif="cire"] [data-legende="cire"],
+  .sequence[data-actif="fonte"] [data-scene] [data-etape="fonte"],
+  .sequence[data-actif="fonte"] [data-legende="fonte"],
+  .sequence[data-actif="sertissage"] [data-scene] [data-etape="sertissage"],
+  .sequence[data-actif="sertissage"] [data-legende="sertissage"],
+  .sequence[data-actif="polissage"] [data-scene] [data-etape="polissage"],
+  .sequence[data-actif="polissage"] [data-legende="polissage"] {
+    opacity: 1;
+  }
+  .sequence[data-pilote] [data-step] {
+    opacity: 0.32;
+    transition: opacity var(--duree) var(--ease-maison);
+  }
+  .sequence[data-pilote][data-actif="croquis"] [data-step="croquis"],
+  .sequence[data-pilote][data-actif="gouache"] [data-step="gouache"],
+  .sequence[data-pilote][data-actif="cire"] [data-step="cire"],
+  .sequence[data-pilote][data-actif="fonte"] [data-step="fonte"],
+  .sequence[data-pilote][data-actif="sertissage"] [data-step="sertissage"],
+  .sequence[data-pilote][data-actif="polissage"] [data-step="polissage"] {
+    opacity: 1;
+  }
+}
+
+/* ── La Maison : visuels provisoires ─────────────────────────── */
+
+/* Lumière du nord dans les hautes fenêtres de l'atelier (quatre travées). */
+.fenetre-nord {
+  background:
+    linear-gradient(180deg, transparent 62%, color-mix(in oklab, var(--onyx) 10%, transparent)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(25% - 2px),
+      color-mix(in oklab, var(--onyx) 16%, transparent) calc(25% - 2px) 25%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 0 48%,
+      color-mix(in oklab, var(--onyx) 16%, transparent) 48% calc(48% + 2px),
+      transparent calc(48% + 2px)
+    ),
+    radial-gradient(
+      70% 120% at 30% 0%,
+      color-mix(in oklab, var(--diamant) 92%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      60% 80% at 85% 100%,
+      color-mix(in oklab, var(--champagne) 22%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(180deg, var(--nacre), color-mix(in oklab, var(--nacre) 72%, var(--pierre)));
+}
+
+/* Portrait en arche, en attendant la photographie de la fondatrice. */
+.portrait-arche {
+  display: grid;
+  place-items: center;
+  border-radius: 50% 50% 0 0 / 34% 34% 0 0;
+  color: color-mix(in oklab, var(--onyx) 55%, var(--champagne));
+  background:
+    radial-gradient(
+      70% 50% at 50% 30%,
+      color-mix(in oklab, var(--diamant) 80%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(180deg, color-mix(in oklab, var(--champagne) 34%, var(--nacre)), var(--nacre));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--champagne) 40%, transparent);
+}
+
+/* ── Provenance : arcs de la carte, tracés à l'apparition ────── */
+
+.js .carte [data-arc] {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1800ms var(--ease-maison) 300ms;
+}
+.js .carte[data-visible] [data-arc] {
+  stroke-dashoffset: 0;
+}
+
+/* ── Guide des tailles : carte de calibrage et cercle de mesure ─ */
+
+.carte-calibrage {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--surface) 80%, var(--champagne)),
+    var(--surface)
+  );
+  box-shadow:
+    inset 0 0 0 1px var(--encre),
+    0 18px 40px color-mix(in oklab, var(--onyx) 12%, transparent);
+}
+
+.cercle-bague {
+  position: relative;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--champagne) 14%, transparent) 60%,
+    transparent 70%
+  );
+  box-shadow:
+    inset 0 0 0 1px var(--encre),
+    0 0 0 6px color-mix(in oklab, var(--champagne) 18%, transparent);
+}
+/* Réticule : aide à centrer la bague */
+.cercle-bague::before,
+.cercle-bague::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  background: var(--encre-douce);
+}
+.cercle-bague::before {
+  width: 12px;
+  height: 1px;
+  translate: -50% 0;
+}
+.cercle-bague::after {
+  width: 1px;
+  height: 12px;
+  translate: 0 -50%;
 }

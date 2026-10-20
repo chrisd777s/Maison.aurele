@@ -10,7 +10,8 @@ Lire `AGENTS.md` : cette version de Next.js diffère des connaissances d'entraî
 - Phase 3 (3D procédurale : bague d'accueil, visionneuse, rendus fixes) : faite.
 - Phase 4 (configurateur L'Atelier) : faite.
 - Phase 5 (panier, Écrin et partage, Stripe Checkout, rendez-vous privé, courriels) : faite.
-- Phases suivantes : 6 éditorial · 7 perf/a11y/SEO.
+- Phase 6 (La Maison, Savoir-faire, Provenance, guide des tailles, Journal, pages légales) : faite.
+- Phase suivante : 7 perf/a11y/SEO.
   Après chaque phase : captures Playwright aux 4 largeurs, relecture, commit, puis attendre l'OK de l'utilisateur.
 
 ## Commandes
@@ -38,6 +39,10 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - Écrin partagé : jeton base64url sans stockage (`lib/ecrin/token.ts`), validé dans le proxy (404) ; page `instant = false` (rendue à la demande, non indexée).
 - Paiement : `app/api/checkout` (Stripe REST via `lib/stripe.ts`, mode démonstration sans clé), webhook signé `app/api/stripe/webhook`.
 - Rendez-vous : `lib/appointment/` (schéma Zod partagé formulaire/route, créneaux calculés, .ics), formulaire RHF en 3 étapes (`components/appointment/`), route `app/api/rendez-vous`. Courriels : `lib/mail/` (`.outbox/` ou Resend), gabarits en tableaux et styles en ligne (`lib/mail/theme.ts` recopie les tokens : seule exception aux couleurs codées).
+- Éditorial : textes longs dans `data/` (`journal.ts`, `legal.ts`, `house.ts`), blocs `lib/editorial/types.ts` rendus par `components/editorial/Prose.tsx` ; jamais dans `messages/` (tout `messages/` part au navigateur). `data/journal-index.ts` sans les corps (lu par le proxy). Espaces fines insécables avant `: ; ? !` et dans « ».
+- Savoir-faire : `CraftArt` (une bague en six calques `[data-etape]`) ; `CraftSequence` charge GSAP + ScrollTrigger à la demande sur grand écran seulement (scène `sticky`, étape active en `data-actif`, tracés liés au défilement si le mouvement est permis) ; sans JS ou sur mobile, une illustration par étape.
+- Provenance : `data/provenance.ts`, `lib/provenance/` (parcours, projection de la carte, `normalizeCode`). Codes et articles validés dans le proxy (404, minuscules redirigées). Recherche sans JS via `GET /api/provenance`.
+- Guide des tailles : `lib/sizing/ring.ts` (CA/US, FR, UK, testé), `components/sizing/RingSizer.tsx` (carte ID-1 en portrait sur écran étroit).
 - Ambiance de collection : `data-ambiance` sur un élément de la page teinte `--fond` de toute la page (`:root:has(...)`). `.scene-nuit` force une section en pénombre.
 
 ## Conventions
@@ -48,5 +53,5 @@ Captures : `tests/e2e/captures/<largeur>/` (non versionnées).
 - URL traduites : déclarer chaque page dans `i18n/routing.ts` (`pathnames`), naviguer avec `Link` de `@/i18n/navigation`.
 - Mouvement : courbe `ease-maison`, 600–1200 ms, montée ≤ 16 px ; `data-reveal` pour les révélations au scroll ; tout respecte `prefers-reduced-motion`.
 - Composants serveur par défaut ; `"use client"` seulement pour l'interaction (menu, bascules).
-- Pas de dépendance nouvelle sans raison écrite ici. Ajoutées : `zustand` (panier/Écrin persistés), `react-hook-form` + `zod` (formulaires, schémas partagés avec les routes ; adaptateur maison `lib/forms/zod-resolver.ts`, `@hookform/resolvers` ayant des dépendances optionnelles en conflit). Stripe et Resend : API REST par `fetch`, sans SDK.
+- Pas de dépendance nouvelle sans raison écrite ici. Ajoutées : `zustand` (panier/Écrin persistés), `react-hook-form` + `zod` (formulaires, schémas partagés avec les routes ; adaptateur maison `lib/forms/zod-resolver.ts`, `@hookform/resolvers` ayant des dépendances optionnelles en conflit). Stripe et Resend : API REST par `fetch`, sans SDK. `gsap` (séquence épinglée du Savoir-faire ; chargé à la demande, jamais dans le bundle initial).
 - `fieldset` : `min-inline-size: 0` posé globalement (sinon débordement horizontal sur mobile).

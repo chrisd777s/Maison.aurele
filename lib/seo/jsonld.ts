@@ -48,3 +48,36 @@ export function productJsonLd(product: Product, locale: Locale, material: string
     },
   };
 }
+
+/** La Maison : atelier-boutique de Montréal et salon privé de Paris. */
+export function jewelryStoreJsonLd(locale: Locale) {
+  const store = (place: (typeof maison.places)[keyof typeof maison.places], id: string) => ({
+    "@type": "JewelryStore",
+    "@id": `${siteUrl}/#${id}`,
+    name: `${maison.name} — ${place.city}`,
+    email: maison.email,
+    url: url("/rendez-vous", locale),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: place.street,
+      addressLocality: place.city,
+      addressRegion: place.region,
+      addressCountry: place.country,
+    },
+  });
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organisation`,
+    name: maison.name,
+    url: siteUrl,
+    foundingDate: String(maison.founded),
+    founder: { "@type": "Person", name: "Hélène Aurèle" },
+    email: maison.email,
+    slogan: locale === "fr" ? "La lumière, captive." : "Light, held captive.",
+    subOrganization: [
+      store(maison.places.montreal, "montreal"),
+      store(maison.places.paris, "paris"),
+    ],
+  };
+}

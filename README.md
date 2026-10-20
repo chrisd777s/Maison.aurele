@@ -50,3 +50,10 @@ Voir `.env.example`. Le site fonctionne sans aucun compte externe.
 - `POST /api/rendez-vous` valide la demande (même schéma Zod que le formulaire), vérifie le créneau, puis envoie deux courriels : la confirmation au visiteur et un avis au salon.
 - Les créneaux sont calculés (`lib/appointment/slots.ts`) : du mardi au samedi, sur trois semaines. À remplacer par un agenda réel (Calendly, Google Agenda) avant la mise en production.
 - Sans `RESEND_API_KEY`, les courriels sont écrits dans `.outbox/` (un `.html` à ouvrir dans un navigateur, un `.json` avec destinataire et version texte). L'écriture de fichiers n'est pas possible sur un hébergement sans disque (Vercel) : y configurer Resend.
+
+## Contenus éditoriaux
+
+- **Textes longs** (Journal, pages légales, La Maison, étapes du savoir-faire) : dans `data/journal.ts`, `data/legal.ts` et `data/house.ts`, en français et en anglais. Ils ne sont lus que côté serveur. Les libellés d'interface restent dans `messages/`.
+- **Provenance** : `data/provenance.ts` (parcours par nature de pierre, artisans, date de sertissage et lot de métal par code). Le code imprimé en QR sur l'écrin ouvre `/{langue}/provenance/{CODE}` ; un code inconnu répond 404, un code en minuscules est redirigé. Avec Shopify, la fiche se lit dans la métadonnée `aurele.provenance_code`, mais le parcours détaillé reste à brancher.
+- **Guide des tailles** : calibrage par carte bancaire (format ID-1), mémorisé dans le navigateur (`aurele-calibrage`). Précision annoncée d'une demi-taille.
+- **Pages légales** : raison sociale, NEQ, RCS et hébergeur sont des **valeurs de démonstration** (Maison Aurèle est une marque fictive). À remplacer et à faire relire par un juriste avant toute mise en ligne.

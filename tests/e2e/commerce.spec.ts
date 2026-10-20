@@ -145,6 +145,8 @@ test.describe("Rendez-vous privé", () => {
   test("trois étapes depuis L'Atelier, erreurs, confirmation et courriels", async ({
     page,
   }, info) => {
+    // Parcours long qui passe par L'Atelier (3D en rendu logiciel) : budget de temps triplé.
+    test.slow();
     const before = readdirSync(".outbox", { withFileTypes: true }).length;
     await page.goto("/fr/atelier?v=1&forme=coussin&carats=1.20&metal=or-rose&monture=halo");
     await expect(page.locator("form")).toHaveCount(1);

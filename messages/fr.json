@@ -91,7 +91,11 @@
     "chapterCta": "Entrer dans la collection",
     "tiltPrompt": "Inclinez pour faire jouer la lumière",
     "tiltActive": "La lumière suit votre geste",
-    "heroAlt": "Bague Aube Première en or blanc : un diamant de 1,02 carat sur six griffes fines, qui tourne lentement dans la lumière."
+    "heroAlt": "Bague Aube Première en or blanc : un diamant de 1,02 carat sur six griffes fines, qui tourne lentement dans la lumière.",
+    "craftEyebrow": "Savoir-faire",
+    "craftTitle": "Six gestes, une lumière.",
+    "craftText": "Du premier trait de crayon au dernier passage de la brosse de soie, chaque pièce traverse six étapes et autant de mains, sans quitter notre atelier de Montréal.",
+    "craftCta": "Suivre la création d’une bague"
   },
   "NotFound": {
     "eyebrow": "Erreur 404",
@@ -496,5 +500,178 @@
       "next": "L’atelier vous écrira sous un jour ouvrable pour confirmer la date de remise.",
       "nextDeposit": "L’atelier vous écrira sous un jour ouvrable pour confirmer la date de remise et le règlement du solde."
     }
+  },
+  "Craft": {
+    "metaTitle": "Savoir-faire : six étapes, du croquis au polissage",
+    "metaDescription": "Croquis, gouache, cire, fonte, sertissage, polissage : la création d’une bague Maison Aurèle, étape par étape, dans notre atelier du Vieux-Montréal.",
+    "eyebrow": "Savoir-faire",
+    "title": "Six gestes, une lumière.",
+    "lede": "Une bague de la Maison demande en moyenne cent vingt heures de travail. Voici, étape par étape, comment un trait de crayon devient une pierre qui retient la lumière.",
+    "sequenceTitle": "Les six étapes de la création",
+    "stepOf": "Étape {n} sur {total}",
+    "duration": "Durée",
+    "tools": "Outils",
+    "handsEyebrow": "Les mains",
+    "handsTitle": "Quatorze artisans, un seul atelier.",
+    "handsText": "Modeleurs, fondeurs, sertisseurs, polisseuses : chacun signe son étape dans le registre de la pièce. Leur nom figure sur la fiche de provenance que vous recevez avec elle.",
+    "since": "à l’atelier depuis {year}",
+    "closingTitle": "À votre tour de dessiner.",
+    "closingText": "Composez votre bague dans L’Atelier, ou venez voir l’établi de près : nos salons de Montréal et de Paris vous reçoivent sur rendez-vous.",
+    "closingAtelier": "Composer ma bague",
+    "closingVisit": "Visiter l’atelier"
+  },
+  "House": {
+    "metaTitle": "La Maison : histoire, fondatrice et engagements",
+    "metaDescription": "Fondée en 2011 rue Saint-Paul par Hélène Aurèle, Maison Aurèle façonne à la main une haute joaillerie contemporaine, avec des pierres tracées et un or recyclé.",
+    "eyebrow": "La Maison",
+    "title": "Une lumière née rue Saint-Paul.",
+    "lede": "Depuis 2011, dans un ancien entrepôt du Vieux-Montréal, quatorze artisans travaillent une seule matière : la lumière, et la façon dont une pierre la retient.",
+    "founderEyebrow": "La fondatrice",
+    "timelineEyebrow": "Repères",
+    "timelineTitle": "Quinze ans, pas à pas.",
+    "valuesEyebrow": "Nos engagements",
+    "valuesTitle": "Ce qui ne changera pas.",
+    "figuresTitle": "La Maison en quelques chiffres",
+    "closingTitle": "Poussez la porte.",
+    "closingText": "L’atelier de la rue Saint-Paul et le salon de la rue de la Paix vous reçoivent sur rendez-vous, pour regarder des pierres à la lumière du jour, sans engagement.",
+    "closingVisit": "Prendre rendez-vous",
+    "closingCraft": "Le savoir-faire",
+    "closingProvenance": "La provenance"
+  },
+  "Provenance": {
+    "metaTitle": "Provenance : le parcours de chaque pierre",
+    "metaDescription": "De la mine à l’atelier : retrouvez l’origine, la taille, la date de sertissage et l’artisan de chaque pièce Maison Aurèle grâce au code imprimé sur son écrin.",
+    "eyebrow": "Provenance",
+    "title": "Chaque pierre a une adresse.",
+    "lede": "Nous savons d’où vient chacune de nos pierres principales, où elle a été taillée, quel jour elle a été sertie et par qui. Le code imprimé sur votre écrin vous ouvre ce parcours.",
+    "lookupLabel": "Code de provenance",
+    "lookupSubmit": "Retracer",
+    "lookupHint": "Le code figure sous l’écrin, à côté du code QR. Exemple : AU101-0187.",
+    "lookupUnknown": "Ce code ne correspond à aucune pièce. Vérifiez sa saisie, ou écrivez-nous.",
+    "commitmentEyebrow": "Notre engagement",
+    "commitmentTitle": "Trois étapes, toutes connues.",
+    "stages": {
+      "origin": {
+        "title": "L’origine",
+        "text": "La région de la mine ou la ferme perlière, jamais une source anonyme. Nous écartons toute pierre dont le parcours ne peut être documenté."
+      },
+      "cutting": {
+        "title": "La taille",
+        "text": "L’atelier de taille où la pierre a reçu ses facettes, ou, pour les perles, la maison qui les a triées et appairées."
+      },
+      "atelier": {
+        "title": "L’atelier",
+        "text": "Le jour du sertissage à Montréal, le nom de l’artisan qui l’a fait et celui de la polisseuse qui a fini la pièce."
+      }
+    },
+    "gold": "Le métal suit la même règle : notre or et notre platine sont recyclés et certifiés, et le numéro du lot employé figure sur chaque fiche.",
+    "registerEyebrow": "Le registre",
+    "registerTitle": "Les pièces des collections.",
+    "registerText": "Chaque pièce présentée sur ce site a son parcours. Le registre complet des pièces vendues est tenu à l’atelier.",
+    "pieceMetaTitle": "{name} : parcours {code}",
+    "pieceMetaDescription": "Origine, taille, sertissage et artisans de la pièce {name}, de la mine à notre atelier de Montréal.",
+    "pieceEyebrow": "Parcours n° {code}",
+    "journeyTitle": "Le parcours de la pierre principale : {stone}",
+    "mapLabel": "Carte du parcours : {stops}.",
+    "stops": {
+      "origine": {
+        "stone": "Mine",
+        "pearl": "Ferme perlière"
+      },
+      "taille": {
+        "stone": "Taille",
+        "pearl": "Tri et appairage"
+      },
+      "atelier": {
+        "stone": "Sertissage",
+        "pearl": "Montage"
+      }
+    },
+    "setOn": "Sertie le {date} par {name}.",
+    "accentsTitle": "Pierres d’accompagnement",
+    "recordTitle": "Fiche de provenance",
+    "recordCode": "Code",
+    "recordStone": "Pierre principale",
+    "recordSetAt": "Date de sertissage",
+    "recordSetter": "Sertissage",
+    "recordPolisher": "Polissage",
+    "recordMetal": "Métal",
+    "metalLot": "Recyclé et certifié, lot {lot}",
+    "recordNote": "Cette fiche décrit la pièce de référence des collections. La fiche de votre propre pièce, avec son code, accompagne son certificat dans l’écrin.",
+    "seePiece": "Voir la pièce",
+    "seeInSalon": "La voir en salon"
+  },
+  "SizeGuide": {
+    "metaTitle": "Guide des tailles de bague : mesurer à l’écran",
+    "metaDescription": "Trouvez votre taille de bague en deux minutes : calibrez votre écran avec une carte bancaire, posez une bague, lisez sa taille canadienne, française et britannique.",
+    "eyebrow": "Guide des tailles",
+    "title": "Votre taille, en deux minutes.",
+    "lede": "Une carte bancaire et une bague qui vous va : c’est tout ce qu’il faut. La carte sert d’étalon, car elle a la même taille partout dans le monde.",
+    "toolTitle": "Mesurer à l’écran",
+    "stepsLabel": "Étapes de la mesure",
+    "steps": {
+      "carte": "Calibrer l’écran",
+      "bague": "Mesurer une bague"
+    },
+    "cardTitle": "Posez une carte contre l’écran.",
+    "cardText": "Placez une carte bancaire, de fidélité ou d’identité sur le cadre ci-dessous, coin contre coin, puis ajustez la taille du cadre jusqu’à ce que ses bords touchent exactement ceux de la carte.",
+    "cardTextPortrait": "Tenez une carte bancaire, de fidélité ou d’identité à la verticale sur le cadre ci-dessous, puis ajustez le cadre jusqu’à ce que ses bords touchent exactement ceux de la carte.",
+    "cardAdjust": "Taille du cadre",
+    "cardValue": "Cadre de {mm} mm affiché sur {px} pixels",
+    "cardConfirm": "Le cadre correspond à ma carte",
+    "cardKeep": "Garder le calibrage précédent",
+    "smaller": "Réduire",
+    "larger": "Agrandir",
+    "ringTitle": "Posez une bague sur le cercle.",
+    "ringText": "Choisissez une bague portée au doigt voulu. Posez-la à plat sur l’écran et ajustez le cercle jusqu’à ce qu’il épouse exactement le bord intérieur de l’anneau.",
+    "ringAdjust": "Diamètre du cercle",
+    "ringValue": "Diamètre intérieur {mm} mm",
+    "recalibrate": "Recommencer le calibrage",
+    "resultTitle": "Votre taille",
+    "outOfRange": "Cette mesure sort de notre gamme de tailles. Écrivez-nous : l’atelier ajuste au-delà.",
+    "systemCaUs": "Canada · É.-U.",
+    "systemFr": "France",
+    "systemUk": "Royaume-Uni",
+    "diameter": "Diamètre intérieur",
+    "circumference": "Tour de doigt",
+    "diameterShort": "Ø (mm)",
+    "circumferenceShort": "Tour (mm)",
+    "mm": "{value} mm",
+    "accuracy": "Précision d’environ une demi-taille. Entre deux tailles, choisissez la plus grande. Pour une bague de fiançailles, nous vous envoyons volontiers un baguier, sans frais.",
+    "sizerCta": "Recevoir un baguier offert",
+    "sizerSubject": "Demande de baguier",
+    "ringsCta": "Voir les bagues",
+    "tipsTitle": "Conseils",
+    "tipsLede": "Un doigt change au fil de la journée. Quelques précautions évitent un ajustement.",
+    "tip1": "Mesurez en fin de journée, à température ambiante : les doigts sont plus fins le matin et par temps froid.",
+    "tip2": "Si votre articulation est plus large que la base du doigt, choisissez une taille qui passe l’articulation sans forcer.",
+    "tip3": "Un anneau large (plus de 4 mm) se porte plus serré : prenez une demi-taille au-dessus.",
+    "tip4": "Pour une surprise, empruntez discrètement une bague portée au même doigt, ou demandez-nous conseil.",
+    "tableTitle": "Correspondances",
+    "tableCaption": "Tailles de bague dans les trois systèmes, avec le diamètre intérieur et le tour de doigt.",
+    "otherTitle": "Colliers et bracelets",
+    "necklaceTitle": "Longueur de chaîne",
+    "necklaceText": "40 cm se pose à la base du cou, 42 cm sur la clavicule, 45 cm juste en dessous ; 60 cm descend sur le buste. Chaque chaîne porte un anneau intermédiaire pour la raccourcir de 2 cm.",
+    "braceletTitle": "Tour de poignet",
+    "braceletText": "Mesurez votre poignet juste au-dessus de l’os avec un ruban souple, puis ajoutez 1 cm pour un bracelet ajusté, 2 cm pour un bracelet qui bouge librement."
+  },
+  "Journal": {
+    "metaTitle": "Journal : histoires de pierres et conseils d’atelier",
+    "metaDescription": "Entretien des bijoux, choix d’un diamant, histoire de la perle : les textes de l’atelier Maison Aurèle.",
+    "eyebrow": "Journal",
+    "title": "Notes d’atelier.",
+    "lede": "Ce que nous apprennent les pierres, ce que nous conseillons à ceux qui les portent. Écrit par celles et ceux qui les travaillent.",
+    "listLabel": "Articles",
+    "minutes": "{count, plural, one {# minute} other {# minutes}} de lecture",
+    "by": "Par {name}",
+    "relatedEyebrow": "Dans cet article",
+    "relatedTitle": "Les pièces citées",
+    "moreTitle": "À lire aussi"
+  },
+  "Legal": {
+    "eyebrow": "Informations",
+    "updated": "Mis à jour le {date}",
+    "contents": "Sommaire",
+    "others": "Autres informations"
   }
 }
