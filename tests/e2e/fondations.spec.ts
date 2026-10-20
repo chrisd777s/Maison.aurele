@@ -65,8 +65,11 @@ test.describe("fondations", () => {
     await expect(dialog).toBeVisible();
     await page.waitForTimeout(700);
     await page.screenshot({ path: capture("menu", info.project.name) });
+    // Défilement de la page bloqué sous le menu, rendu à la fermeture.
+    await expect(page.locator("html")).toHaveClass(/defilement-bloque/);
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
+    await expect(page.locator("html")).not.toHaveClass(/defilement-bloque/);
   });
 
   test("panneau Collections au clavier", async ({ page }, info) => {

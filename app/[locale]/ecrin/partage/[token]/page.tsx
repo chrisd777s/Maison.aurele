@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { KeepSelection } from "@/components/ecrin/KeepSelection";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { Price } from "@/components/shop/Price";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -47,7 +48,7 @@ async function SharedSelection({ params }: { params: Promise<{ token: string }> 
   });
 
   return (
-    <>
+    <ClientMessages namespaces={["Ecrin"]}>
       <ul className="grille gap-y-16" data-prix={shared.hidePrices ? "masques" : "visibles"}>
         {pieces.map(({ product, metal, price }, i) => (
           <li
@@ -95,7 +96,7 @@ async function SharedSelection({ params }: { params: Promise<{ token: string }> 
           </div>
         </div>
       </div>
-    </>
+    </ClientMessages>
   );
 }
 

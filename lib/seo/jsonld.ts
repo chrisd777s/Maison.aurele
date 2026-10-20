@@ -2,6 +2,7 @@ import { maison, siteUrl } from "@/data/maison";
 import { getPathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import type { Product } from "@/lib/commerce/types";
+import { renderSrc } from "@/lib/renders";
 
 type Href = Parameters<typeof getPathname>[0]["href"];
 const url = (href: Href, locale: Locale) => `${siteUrl}${getPathname({ href, locale })}`;
@@ -33,6 +34,7 @@ export function productJsonLd(product: Product, locale: Locale, material: string
     name: product.name,
     description: product.description,
     sku: product.reference,
+    image: product.metals.map((m) => `${siteUrl}${renderSrc(product.slug, m.id)}`),
     material,
     brand: { "@type": "Brand", name: maison.name },
     url: url(href, locale),
@@ -72,6 +74,7 @@ export function jewelryStoreJsonLd(locale: Locale) {
     name: maison.name,
     url: siteUrl,
     foundingDate: String(maison.founded),
+    image: `${siteUrl}/og/${locale}/maison/index`,
     founder: { "@type": "Person", name: "Hélène Aurèle" },
     email: maison.email,
     slogan: locale === "fr" ? "La lumière, captive." : "Light, held captive.",

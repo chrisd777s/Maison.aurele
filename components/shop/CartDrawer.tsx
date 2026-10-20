@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Icon } from "@/components/ui/Icon";
 import { Link, usePathname } from "@/i18n/navigation";
 import { RATES_DATE } from "@/lib/currency";
+import { showModalLocked } from "@/lib/dom/scroll-lock";
 import { renderSrc } from "@/lib/renders";
 import {
   DELIVERIES,
@@ -49,7 +50,7 @@ export function CartDrawer() {
   useEffect(() => {
     const el = dialog.current;
     if (!el) return;
-    if (open && !el.open) el.showModal();
+    if (open && !el.open) showModalLocked(el);
     if (!open && el.open) el.close();
   }, [open]);
 

@@ -11,7 +11,8 @@ import { collections } from "@/data/collections";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getCollection, getCollections, getProducts } from "@/lib/commerce";
-import { alternatesFor } from "@/lib/seo/metadata";
+import { shareImage } from "@/lib/og/share";
+import { alternatesFor, openGraphBase } from "@/lib/seo/metadata";
 import { breadcrumbJsonLd } from "@/lib/seo/jsonld";
 
 export function generateStaticParams() {
@@ -42,6 +43,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       { pathname: "/collections/[collection]", params: { collection: collection.slug } },
       locale,
     ),
+    openGraph: {
+      ...openGraphBase(locale),
+      images: [await shareImage(locale, "collection", collection.slug)],
+    },
   };
 }
 
@@ -69,7 +74,7 @@ export default async function CollectionPage(props: Props) {
   } as const;
 
   return (
-    <div data-ambiance={collection.slug}>
+    <div>
       <JsonLd
         data={breadcrumbJsonLd(
           [

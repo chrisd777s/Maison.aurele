@@ -14,8 +14,9 @@ import type { Locale } from "@/i18n/routing";
 import { getProducts } from "@/lib/commerce";
 import { formatEditorialDate } from "@/lib/editorial/date";
 import { readingMinutes } from "@/lib/editorial/types";
+import { shareImage } from "@/lib/og/share";
 import { breadcrumbJsonLd, organizationRef } from "@/lib/seo/jsonld";
-import { alternatesFor } from "@/lib/seo/metadata";
+import { alternatesFor, openGraphBase } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -41,9 +42,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       locale,
     ),
     openGraph: {
+      ...openGraphBase(locale),
       type: "article",
       publishedTime: article.date,
       authors: [article.author.name],
+      images: [await shareImage(locale, "journal", article.slug)],
     },
   };
 }
@@ -68,6 +71,7 @@ export default async function ArticlePage(props: Props) {
           headline: article.title[locale],
           description: article.dek[locale],
           datePublished: article.date,
+          image: `${siteUrl}/og/${locale}/journal/${article.slug}`,
           inLanguage: locale,
           author: { "@type": "Person", name: article.author.name },
           publisher: organizationRef,

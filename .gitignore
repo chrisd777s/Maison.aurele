@@ -48,3 +48,6 @@ next-env.d.ts
 /tests/e2e/captures
 /.next-affiches/
 /.outbox/
+
+# rapports Lighthouse (scripts/lighthouse.sh)
+/lighthouse/

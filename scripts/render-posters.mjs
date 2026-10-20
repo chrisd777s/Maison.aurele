@@ -6,10 +6,12 @@
  *   POSTER_STUDIO=1 npx next dev -p 3300      (dans un autre terminal)
  *   node scripts/render-posters.mjs [slug…]   (toutes les pièces, tous les métaux par défaut)
  *
- * Sortie : public/renders/<slug>--<métal>.webp (1600 × 2000, fond transparent).
+ * Sortie : public/renders/<slug>--<métal>.webp (1600 × 2000, fond transparent),
+ * et sa version JPEG pour les images de partage (public/renders/partage/).
  */
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
+import { shareRender } from "./share-renders.mjs";
 
 const BASE = process.env.POSTER_BASE_URL ?? "http://127.0.0.1:3300";
 const only = process.argv.slice(2);
@@ -45,6 +47,7 @@ for (const job of jobs) {
     .resize(1600, 2000, { fit: "cover" })
     .webp({ quality: 88, alphaQuality: 90 })
     .toFile(`public/renders/${job.name}.webp`);
+  await shareRender(job.name);
   console.log(`✓ ${job.name}`);
   await page.close();
 }

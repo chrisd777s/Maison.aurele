@@ -57,5 +57,5 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|studio-affiches|.*\\..*).*)"],
+  matcher: ["/((?!api|og/|apple-icon|_next|_vercel|studio-affiches|.*\\..*).*)"],
 };

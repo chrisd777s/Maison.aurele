@@ -673,5 +673,18 @@
     "updated": "Mis à jour le {date}",
     "contents": "Sommaire",
     "others": "Autres informations"
+  },
+  "Share": {
+    "siteEyebrow": "Haute joaillerie · depuis 2011",
+    "siteTitle": "La lumière, captive.",
+    "siteSubtitle": "Façonnée dans notre atelier du Vieux-Montréal.",
+    "places": "Montréal · Paris",
+    "siteAlt": "Maison Aurèle, haute joaillerie à Montréal et Paris : la bague Aube Première sur fond ivoire.",
+    "pieceAlt": "{name}, collection {collection} de Maison Aurèle.",
+    "collectionAlt": "Collection {name} de Maison Aurèle : {tagline}.",
+    "collectionEyebrow": "Collection",
+    "provenanceEyebrow": "Provenance · {code}",
+    "provenanceAlt": "Fiche de provenance {code} : {name}.",
+    "journalAlt": "Journal de Maison Aurèle : {title}."
   }
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Monogramme : un anneau et sa pierre. Couleurs = tokens --onyx et --champagne
+       (un fichier statique ne lit pas les variables CSS). -->
+  <rect width="64" height="64" rx="14" fill="#0e0d0c"/>
+  <ellipse cx="32" cy="38" rx="15" ry="15.5" fill="none" stroke="#c2a36b" stroke-width="3.2"/>
+  <path d="M24.5 17.5 28 13h8l3.5 4.5L32 25Z" fill="#f6f1ea" stroke="#c2a36b" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>

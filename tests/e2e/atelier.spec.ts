@@ -69,6 +69,8 @@ test.describe("L'Atelier", () => {
   });
 
   test("aperçu 3D vivant", async ({ page }, info) => {
+    // 3D forcée : le navigateur de test n'a qu'un rendu logiciel.
+    await page.addInitScript(() => localStorage.setItem("aurele-3d", "force"));
     await open(page, "/fr/atelier");
     const viewer = page.locator("figure[data-3d]");
     await expect(viewer).toHaveAttribute("data-3d", "pret", { timeout: 60_000 });

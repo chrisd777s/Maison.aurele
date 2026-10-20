@@ -84,29 +84,30 @@
   color-scheme: dark;
 }
 
-/* Ambiances de collection : le fond de toute la page se teinte légèrement
-   dès qu'un élément [data-ambiance] est présent. Contrastes AA vérifiés. */
-:root:has([data-ambiance="aube"]) {
+/* Ambiances de collection : le fond de toute la page se teinte légèrement sur
+   une collection et ses pièces (<html data-ambiance>, posé par le gabarit d'après
+   l'adresse ; pas de :has(), coûteux à chaque modification du DOM). Contrastes AA vérifiés. */
+:root[data-ambiance="aube"] {
   --ambiance-jour: #f8f1ec;
   --ambiance-nuit: #15110f;
 }
-:root:has([data-ambiance="maree"]) {
+:root[data-ambiance="maree"] {
   --ambiance-jour: #eef1ef;
   --ambiance-nuit: #0c1013;
 }
-:root:has([data-ambiance="obsidienne"]) {
+:root[data-ambiance="obsidienne"] {
   --ambiance-jour: #ece8e3;
   --ambiance-nuit: #070707;
 }
-:root:has([data-ambiance]) {
+:root[data-ambiance] {
   --fond: var(--ambiance-jour);
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="jour"]):has([data-ambiance]) {
+  :root[data-ambiance]:not([data-theme="jour"]) {
     --fond: var(--ambiance-nuit);
   }
 }
-:root[data-theme="nuit"]:has([data-ambiance]) {
+:root[data-theme="nuit"][data-ambiance] {
   --fond: var(--ambiance-nuit);
 }
 
@@ -391,9 +392,6 @@
 .menu-plein::backdrop {
   background: transparent;
 }
-:root:has(.menu-plein[open]) {
-  overflow: hidden;
-}
 
 /* Tiroir latéral (panier) : glisse depuis la droite, voile sur la page. */
 .tiroir {
@@ -438,8 +436,8 @@
     background: color-mix(in oklab, var(--onyx) 0%, transparent);
   }
 }
-:root:has(.tiroir[open]) {
-  overflow: hidden;
+:root.defilement-bloque {
+  overflow: hidden; /* menu ou panier ouvert (lib/dom/scroll-lock.ts) */
 }
 @media (prefers-reduced-motion: reduce) {
   .tiroir,
@@ -630,17 +628,19 @@
   .sequence[data-actif="polissage"] [data-legende="polissage"] {
     opacity: 1;
   }
-  .sequence[data-pilote] [data-step] {
-    opacity: 0.32;
-    transition: opacity var(--duree) var(--ease-maison);
+  /* Étapes inactives : titre en encre douce, jamais d'opacité sur le texte
+     (le texte en encre douce passerait sous le contraste AA de 4,5:1). */
+  .sequence[data-pilote] [data-step] h3 {
+    color: var(--encre-douce);
+    transition: color var(--duree) var(--ease-maison);
   }
-  .sequence[data-pilote][data-actif="croquis"] [data-step="croquis"],
-  .sequence[data-pilote][data-actif="gouache"] [data-step="gouache"],
-  .sequence[data-pilote][data-actif="cire"] [data-step="cire"],
-  .sequence[data-pilote][data-actif="fonte"] [data-step="fonte"],
-  .sequence[data-pilote][data-actif="sertissage"] [data-step="sertissage"],
-  .sequence[data-pilote][data-actif="polissage"] [data-step="polissage"] {
-    opacity: 1;
+  .sequence[data-pilote][data-actif="croquis"] [data-step="croquis"] h3,
+  .sequence[data-pilote][data-actif="gouache"] [data-step="gouache"] h3,
+  .sequence[data-pilote][data-actif="cire"] [data-step="cire"] h3,
+  .sequence[data-pilote][data-actif="fonte"] [data-step="fonte"] h3,
+  .sequence[data-pilote][data-actif="sertissage"] [data-step="sertissage"] h3,
+  .sequence[data-pilote][data-actif="polissage"] [data-step="polissage"] h3 {
+    color: var(--encre);
   }
 }
 

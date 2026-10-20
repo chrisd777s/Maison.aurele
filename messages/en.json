@@ -673,5 +673,18 @@
     "updated": "Updated {date}",
     "contents": "Contents",
     "others": "More information"
+  },
+  "Share": {
+    "siteEyebrow": "High jewellery · since 2011",
+    "siteTitle": "Light, held captive.",
+    "siteSubtitle": "Pieces shaped in our Old Montréal atelier.",
+    "places": "Montréal · Paris",
+    "siteAlt": "Maison Aurèle, high jewellery in Montréal and Paris: the Aube Première ring on an ivory ground.",
+    "pieceAlt": "{name}, from the {collection} collection by Maison Aurèle.",
+    "collectionAlt": "The {name} collection by Maison Aurèle: {tagline}.",
+    "collectionEyebrow": "Collection",
+    "provenanceEyebrow": "Provenance · {code}",
+    "provenanceAlt": "Provenance record {code}: {name}.",
+    "journalAlt": "Maison Aurèle Journal: {title}."
   }
 }

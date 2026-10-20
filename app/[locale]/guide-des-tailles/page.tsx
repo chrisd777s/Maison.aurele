@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { RingSizer } from "@/components/sizing/RingSizer";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { maison } from "@/data/maison";
@@ -33,7 +34,7 @@ export default async function SizeGuidePage() {
   const tips = ["tip1", "tip2", "tip3", "tip4"] as const;
 
   return (
-    <>
+    <ClientMessages namespaces={["SizeGuide"]}>
       <header className="grille gap-y-8 pt-16 lg:pt-24">
         <Eyebrow className="col-span-12">{t("eyebrow")}</Eyebrow>
         <h1 className="col-span-12 text-titre-1 lg:col-span-9">{t("title")}</h1>
@@ -134,6 +135,6 @@ export default async function SizeGuidePage() {
           </div>
         </div>
       </section>
-    </>
+    </ClientMessages>
   );
 }

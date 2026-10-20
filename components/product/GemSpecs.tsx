@@ -1,7 +1,9 @@
+import { Fragment } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Product, ProductStone } from "@/lib/commerce/types";
 import { formatNumber } from "@/lib/format";
 
+/** Une paire terme/définition : seul enfant `div` admis dans un `dl`. */
 function Row({ term, value }: { term: string; value: string | undefined }) {
   if (!value) return null;
   return (
@@ -54,7 +56,7 @@ export async function GemSpecs({ product }: { product: Product }) {
         <h3 className="surtitre mb-4 font-sans text-encre-douce">{t("centralStone")}</h3>
         <dl className="border-b border-filet">
           {main.map((stone, i) => (
-            <div key={i}>{stoneRows(stone)}</div>
+            <Fragment key={i}>{stoneRows(stone)}</Fragment>
           ))}
         </dl>
       </div>
@@ -64,7 +66,7 @@ export async function GemSpecs({ product }: { product: Product }) {
             <h3 className="surtitre mb-4 font-sans text-encre-douce">{t("accentStones")}</h3>
             <dl className="border-b border-filet">
               {accents.map((stone, i) => (
-                <div key={i}>{stoneRows(stone)}</div>
+                <Fragment key={i}>{stoneRows(stone)}</Fragment>
               ))}
             </dl>
           </div>

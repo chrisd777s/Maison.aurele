@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { AppointmentForm } from "@/components/appointment/AppointmentForm";
 import { AppointmentFromUrl } from "@/components/appointment/AppointmentFromUrl";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo/metadata";
@@ -20,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AppointmentPage() {
   const t = await getTranslations("Appointment");
   return (
-    <>
+    <ClientMessages namespaces={["Appointment", "Atelier"]}>
       <header className="grille gap-y-8 pt-14 pb-14 lg:pt-20 lg:pb-20">
         <Eyebrow className="col-span-12">{t("eyebrow")}</Eyebrow>
         <h1 className="col-span-12 text-titre-1 lg:col-span-7">{t("title")}</h1>
@@ -31,6 +32,6 @@ export default async function AppointmentPage() {
       <Suspense fallback={<AppointmentForm />}>
         <AppointmentFromUrl />
       </Suspense>
-    </>
+    </ClientMessages>
   );
 }

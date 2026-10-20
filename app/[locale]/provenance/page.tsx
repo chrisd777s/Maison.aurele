@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { ProvenanceLookup } from "@/components/provenance/ProvenanceLookup";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Link } from "@/i18n/navigation";
@@ -26,7 +27,7 @@ export default async function ProvenancePage() {
   const stages = ["origin", "cutting", "atelier"] as const;
 
   return (
-    <>
+    <ClientMessages namespaces={["Provenance"]}>
       <header className="grille gap-y-8 pt-16 lg:pt-24">
         <Eyebrow className="col-span-12">{t("eyebrow")}</Eyebrow>
         <h1 className="col-span-12 text-titre-1 lg:col-span-9">{t("title")}</h1>
@@ -93,6 +94,6 @@ export default async function ProvenancePage() {
           </ul>
         </div>
       </section>
-    </>
+    </ClientMessages>
   );
 }

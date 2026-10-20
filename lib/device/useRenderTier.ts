@@ -19,8 +19,9 @@ function whenIdle(callback: () => void) {
 /**
  * Niveau de rendu 3D de l'appareil, déterminé une fois la page au repos
  * (`null` tant qu'il n'est pas connu), et préférence de mouvement réduit.
+ * `requested` : la 3D a été demandée explicitement par le visiteur.
  */
-export function useRenderTier(enabled = true) {
+export function useRenderTier(enabled = true, requested = false) {
   const [tier, setTier] = useState<RenderTier | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -31,12 +32,12 @@ export function useRenderTier(enabled = true) {
       const signals = await readDeviceSignals();
       if (cancelled) return;
       setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-      setTier(chooseTier(signals));
+      setTier(chooseTier(signals, requested));
     });
     return () => {
       cancelled = true;
     };
-  }, [enabled]);
+  }, [enabled, requested]);
 
   return { tier, reducedMotion };
 }

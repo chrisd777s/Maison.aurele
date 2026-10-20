@@ -28,6 +28,15 @@ describe("niveau de rendu 3D", () => {
       }),
     ).toBe("leger");
   });
+  it("rendu logiciel (sans carte graphique) : image fixe, sauf 3D demandée", () => {
+    expect(chooseTier({ webgl: true, softwareGl: true, cores: 16, memoryGb: 16 })).toBe("aucun");
+    expect(chooseTier({ webgl: true, softwareGl: true, cores: 16 }, true)).toBe("leger");
+  });
+  it("3D demandée : affichée même en économie de données, jamais sans WebGL", () => {
+    expect(chooseTier({ webgl: true, saveData: true, cores: 16 }, true)).toBe("complet");
+    expect(chooseTier({ webgl: true, cores: 2 }, true)).toBe("leger");
+    expect(chooseTier({ webgl: false }, true)).toBe("aucun");
+  });
   it("ordinateur récent : rendu complet", () => {
     expect(chooseTier({ webgl: true, cores: 10, memoryGb: 8 })).toBe("complet");
   });

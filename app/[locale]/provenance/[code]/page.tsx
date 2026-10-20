@@ -16,7 +16,8 @@ import { formatNumber } from "@/lib/format";
 import { formatCoordinates, journeysFor } from "@/lib/provenance/journey";
 import { RENDER_HEIGHT, RENDER_WIDTH, renderSrc } from "@/lib/renders";
 import { breadcrumbJsonLd } from "@/lib/seo/jsonld";
-import { alternatesFor } from "@/lib/seo/metadata";
+import { shareImage } from "@/lib/og/share";
+import { alternatesFor, openGraphBase } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
   return productRecords.map((p) => ({ code: p.provenanceCode }));
@@ -42,6 +43,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       { pathname: "/provenance/[code]", params: { code: product.provenanceCode } },
       locale,
     ),
+    openGraph: {
+      ...openGraphBase(locale),
+      images: [await shareImage(locale, "provenance", product.provenanceCode)],
+    },
   };
 }
 

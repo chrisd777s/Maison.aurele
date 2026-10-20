@@ -3,7 +3,18 @@ import { expect, test } from "@playwright/test";
 const capture = (name: string, project: string) => `tests/e2e/captures/${project}/${name}.png`;
 
 test.describe("3D", () => {
+  test("rendu logiciel (sans carte graphique) : l'accueil garde l'image fixe", async ({ page }) => {
+    // Le navigateur de test émule WebGL par le processeur (SwiftShader).
+    await page.goto("/fr");
+    const hero = page.locator("[data-3d]").first();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(3000);
+    await expect(hero).toHaveAttribute("data-3d", "image");
+    await expect(hero.locator("canvas")).toHaveCount(0);
+  });
+
   test("accueil : image fixe d'abord, puis la bague 3D en fondu", async ({ page }, info) => {
+    await page.addInitScript(() => localStorage.setItem("aurele-3d", "force"));
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     await page.goto("/fr");

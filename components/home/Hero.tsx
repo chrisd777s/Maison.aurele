@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { SplitLetters } from "@/components/motion/SplitLetters";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -19,7 +20,11 @@ export async function Hero() {
         <Eyebrow className="col-span-12 row-start-1 lg:col-span-6">{t("heroEyebrow")}</Eyebrow>
 
         <div className="col-span-12 row-start-2 flex items-center justify-center lg:col-span-6 lg:col-start-7 lg:row-start-2">
-          {ring && <HeroJewel product={ring} />}
+          {ring && (
+            <ClientMessages namespaces={["Home"]}>
+              <HeroJewel product={ring} />
+            </ClientMessages>
+          )}
         </div>
 
         <div className="col-span-12 row-start-3 self-end">

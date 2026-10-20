@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { AtelierConfigurator } from "@/components/atelier/AtelierConfigurator";
 import { AtelierFromUrl } from "@/components/atelier/AtelierFromUrl";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { DEFAULT_CONFIG } from "@/lib/atelier/config";
@@ -21,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AtelierPage() {
   const t = await getTranslations("Atelier");
   return (
-    <>
+    <ClientMessages namespaces={["Atelier"]}>
       <header className="grille gap-y-8 pt-14 pb-14 lg:pt-20 lg:pb-20">
         <Eyebrow className="col-span-12">{t("eyebrow")}</Eyebrow>
         <h1 className="col-span-12 text-titre-1 lg:col-span-7">{t("title")}</h1>
@@ -33,6 +34,6 @@ export default async function AtelierPage() {
       <Suspense fallback={<AtelierConfigurator initial={DEFAULT_CONFIG} />}>
         <AtelierFromUrl />
       </Suspense>
-    </>
+    </ClientMessages>
   );
 }

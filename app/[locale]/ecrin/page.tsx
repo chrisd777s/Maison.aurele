@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { locale as rootLocale } from "next/root-params";
 import { EcrinView } from "@/components/ecrin/EcrinView";
+import { ClientMessages } from "@/components/i18n/ClientMessages";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import type { Locale } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo/metadata";
@@ -20,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function EcrinPage() {
   const t = await getTranslations("Ecrin");
   return (
-    <>
+    <ClientMessages namespaces={["Ecrin"]}>
       <header className="grille gap-y-8 pt-14 pb-14 lg:pt-20 lg:pb-20">
         <Eyebrow className="col-span-12">{t("eyebrow")}</Eyebrow>
         <h1 className="col-span-12 text-titre-1 lg:col-span-7">{t("title")}</h1>
@@ -29,6 +30,6 @@ export default async function EcrinPage() {
         </p>
       </header>
       <EcrinView />
-    </>
+    </ClientMessages>
   );
 }

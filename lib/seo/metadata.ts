@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getPathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
-import { siteUrl } from "@/data/maison";
+import { maison, siteUrl } from "@/data/maison";
 
 type Href = Parameters<typeof getPathname>[0]["href"];
 
@@ -15,4 +15,14 @@ export function alternatesFor(href: Href, locale: Locale): Metadata["alternates"
       "x-default": url(routing.defaultLocale),
     },
   };
+}
+
+/** Champs Open Graph communs ; une page qui définit `openGraph` doit les reprendre. */
+export function openGraphBase(locale: Locale) {
+  return {
+    siteName: maison.name,
+    locale: locale === "fr" ? "fr_CA" : "en_CA",
+    alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => `${l}_CA`),
+    type: "website",
+  } satisfies Metadata["openGraph"];
 }

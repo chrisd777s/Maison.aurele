@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { Icon } from "@/components/ui/Icon";
+import { showModalLocked } from "@/lib/dom/scroll-lock";
 
 type Props = { openLabel: string; closeLabel: string; title: string; children: ReactNode };
 
@@ -23,7 +24,7 @@ export function MobileMenu({ openLabel, closeLabel, title, children }: Props) {
     <>
       <button
         type="button"
-        onClick={() => dialog.current?.showModal()}
+        onClick={() => dialog.current && showModalLocked(dialog.current)}
         aria-haspopup="dialog"
         className="surtitre -ml-2 inline-flex min-h-11 items-center gap-3 px-2 text-encre"
       >

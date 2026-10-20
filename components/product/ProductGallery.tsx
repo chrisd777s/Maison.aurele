@@ -41,6 +41,7 @@ export function ProductGallery({ product }: { product: Product }) {
           alt={alt}
           sizes="(min-width: 1024px) 58vw, 100vw"
           orbit
+          requested
           className="aspect-[4/5] w-full"
         />
         <p className="px-4 pb-4 text-petit text-encre-douce">{t("viewer3dHint")}</p>

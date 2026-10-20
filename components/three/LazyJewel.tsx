@@ -21,6 +21,8 @@ type Props = {
   autoRotate?: boolean;
   /** Charger la 3D (sinon l'image fixe seule). */
   enable3d?: boolean;
+  /** 3D demandée par le visiteur : affichée même sur un appareil modeste. */
+  requested?: boolean;
   tiltRef?: RefObject<{ x: number; y: number } | null>;
   className?: string;
 };
@@ -38,11 +40,12 @@ export function LazyJewel({
   orbit,
   autoRotate = true,
   enable3d = true,
+  requested = false,
   tiltRef,
   className = "",
 }: Props) {
   const root = useRef<HTMLDivElement>(null);
-  const { tier, reducedMotion } = useRenderTier(enable3d);
+  const { tier, reducedMotion } = useRenderTier(enable3d, requested);
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
 
