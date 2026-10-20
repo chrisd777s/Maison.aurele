@@ -107,7 +107,8 @@ Copier `.env.example` en `.env.local`. Toutes sont facultatives en local.
 
 - **JavaScript** : environ 172 Ko compressés chargés par page, dont ~150 Ko pour React et le routeur de Next.js (incompressibles) ; le code du site pèse ~20 Ko. Three.js (~265 Ko) et GSAP ne sont chargés qu'à la demande : la 3D après le premier affichage et au repos, GSAP sur la page Savoir-faire et sur grand écran seulement.
 - **Messages** : chaque page ne transmet au navigateur que les traductions de ses composants interactifs (`components/i18n/ClientMessages.tsx`) : −25 Ko de HTML par page, et les gabarits de courriel ne quittent plus le serveur.
-- **Images** : rendus fixes en AVIF/WebP par `next/image`, image principale prioritaire (LCP) ; polices auto-hébergées par `next/font`.
+- **Images** : rendus fixes en AVIF/WebP par `next/image`, image principale prioritaire (LCP).
+- **Polices** : auto-hébergées et préchargées, réduites aux graisses utilisées et aux caractères du site (`scripts/fonts.sh`) : 64 Ko au lieu de 102. Un caractère hors de ce jeu (lettre polonaise ou tchèque dans un nom saisi, par exemple) s'affiche dans la police de repli.
 - **3D** : jamais lancée d'office sur un appareil sans carte graphique (WebGL émulé par le processeur) : elle y bloquait le fil principal plusieurs secondes. L'image fixe reste ; la « Vue 3D » demandée sur une fiche s'affiche en rendu léger.
 - **Styles** : aucun sélecteur `:has()` sur la racine (l'ambiance de collection est posée sur `<html>` d'après l'adresse) : le navigateur recalculait les styles de tout le document à chaque modification du DOM, soit environ deux fois moins de travail de style au chargement.
 - **Accessibilité** : audit axe (WCAG 2.0 à 2.2, niveaux A et AA) de chaque page en ambiance jour et nuit, menu, panier et formulaire ouverts (`tests/e2e/accessibilite.spec.ts`). Couvert aussi par les tests : lien d'évitement, menu et panneau Collections au clavier (focus piégé, Échap, retour du focus), focus déplacé sur l'étape suivante du formulaire de rendez-vous et du guide des tailles, focus rendu au champ fautif de la recherche de provenance, cibles d'au moins 24 px (règle WCAG 2.2 d'axe ; 44 px pour les commandes principales). Toutes les animations respectent `prefers-reduced-motion`.
@@ -120,39 +121,38 @@ Lighthouse 12, Chromium sans carte graphique, serveur de production local, le 20
 | Page                           | Profil  | Perf. | Access. | Bonnes pratiques | SEO |   LCP |    TBT | CLS |
 | ------------------------------ | ------- | ----: | ------: | ---------------: | --: | ----: | -----: | --: |
 | /en                            | desktop |   100 |     100 |              100 | 100 | 0.7 s |  10 ms |   0 |
-| /en                            | mobile  |    96 |     100 |              100 | 100 | 2.5 s | 150 ms |   0 |
-| /en/pieces/aube-premiere       | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /en/pieces/aube-premiere       | mobile  |    95 |     100 |              100 | 100 | 2.6 s | 170 ms |   0 |
-| /fr                            | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr                            | mobile  |    92 |     100 |              100 | 100 | 3.2 s | 130 ms |   0 |
+| /en                            | mobile  |    98 |     100 |              100 | 100 | 2.3 s |  80 ms |   0 |
+| /en/pieces/aube-premiere       | desktop |   100 |     100 |              100 | 100 | 0.6 s |   0 ms |   0 |
+| /en/pieces/aube-premiere       | mobile  |    96 |     100 |              100 | 100 | 2.6 s | 110 ms |   0 |
+| /fr                            | desktop |   100 |     100 |              100 | 100 | 0.7 s |  10 ms |   0 |
+| /fr                            | mobile  |    93 |     100 |              100 | 100 | 3.0 s | 160 ms |   0 |
 | /fr/atelier                    | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/atelier                    | mobile  |    91 |     100 |              100 | 100 | 2.5 s | 290 ms |   0 |
-| /fr/collections/maree          | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/collections/maree          | mobile  |    96 |     100 |              100 | 100 | 2.8 s |  80 ms |   0 |
-| /fr/confidentialite            | desktop |   100 |     100 |              100 | 100 | 0.7 s |  10 ms |   0 |
-| /fr/confidentialite            | mobile  |    96 |     100 |              100 | 100 | 2.5 s | 130 ms |   0 |
-| /fr/creations/maree-haute      | desktop |   100 |     100 |              100 | 100 | 0.7 s |  20 ms |   0 |
-| /fr/creations/maree-haute      | mobile  |    95 |     100 |              100 | 100 | 2.8 s | 110 ms |   0 |
-| /fr/guide-des-tailles          | desktop |   100 |     100 |              100 | 100 | 0.6 s |   0 ms |   0 |
-| /fr/guide-des-tailles          | mobile  |    93 |     100 |              100 | 100 | 3.1 s | 110 ms |   0 |
-| /fr/journal                    | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/journal                    | mobile  |    96 |     100 |              100 | 100 | 2.5 s | 140 ms |   0 |
-| /fr/journal/choisir-un-diamant | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/journal/choisir-un-diamant | mobile  |    91 |     100 |              100 | 100 | 3.1 s | 160 ms |   0 |
-| /fr/la-maison                  | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/la-maison                  | mobile  |    94 |     100 |              100 | 100 | 2.6 s | 160 ms |   0 |
-| /fr/provenance/MA201-0302      | desktop |   100 |     100 |              100 | 100 | 0.7 s |  20 ms |   0 |
-| /fr/provenance/MA201-0302      | mobile  |    93 |     100 |              100 | 100 | 3.1 s | 120 ms |   0 |
+| /fr/atelier                    | mobile  |    96 |     100 |              100 | 100 | 2.3 s | 170 ms |   0 |
+| /fr/collections/maree          | desktop |   100 |     100 |              100 | 100 | 0.4 s |   0 ms |   0 |
+| /fr/collections/maree          | mobile  |    98 |     100 |              100 | 100 | 2.3 s |  90 ms |   0 |
+| /fr/confidentialite            | desktop |   100 |     100 |              100 | 100 | 0.6 s |  10 ms |   0 |
+| /fr/confidentialite            | mobile  |    97 |     100 |              100 | 100 | 2.2 s | 150 ms |   0 |
+| /fr/creations/maree-haute      | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
+| /fr/creations/maree-haute      | mobile  |    98 |     100 |              100 | 100 | 2.4 s |  60 ms |   0 |
+| /fr/guide-des-tailles          | desktop |   100 |     100 |              100 | 100 | 0.7 s |  10 ms |   0 |
+| /fr/guide-des-tailles          | mobile  |    97 |     100 |              100 | 100 | 2.3 s | 110 ms |   0 |
+| /fr/journal                    | desktop |   100 |     100 |              100 | 100 | 0.6 s |  10 ms |   0 |
+| /fr/journal                    | mobile  |    98 |     100 |              100 | 100 | 2.4 s |  60 ms |   0 |
+| /fr/journal/choisir-un-diamant | desktop |   100 |     100 |              100 | 100 | 0.7 s |  10 ms |   0 |
+| /fr/journal/choisir-un-diamant | mobile  |    98 |     100 |              100 | 100 | 2.3 s |  60 ms |   0 |
+| /fr/la-maison                  | desktop |   100 |     100 |              100 | 100 | 0.6 s |   0 ms |   0 |
+| /fr/la-maison                  | mobile  |    99 |     100 |              100 | 100 | 1.7 s | 130 ms |   0 |
+| /fr/provenance/MA201-0302      | desktop |   100 |     100 |              100 | 100 | 0.6 s |   0 ms |   0 |
+| /fr/provenance/MA201-0302      | mobile  |    95 |     100 |              100 | 100 | 2.8 s |  70 ms |   0 |
 | /fr/rendez-vous                | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/rendez-vous                | mobile  |    91 |     100 |              100 | 100 | 3.0 s | 230 ms |   0 |
-| /fr/savoir-faire               | desktop |   100 |     100 |              100 | 100 | 0.7 s |   0 ms |   0 |
-| /fr/savoir-faire               | mobile  |    97 |     100 |              100 | 100 | 2.5 s |  80 ms |   0 |
+| /fr/rendez-vous                | mobile  |    95 |     100 |              100 | 100 | 2.6 s | 140 ms |   0 |
+| /fr/savoir-faire               | desktop |   100 |     100 |              100 | 100 | 0.6 s |   0 ms |   0 |
+| /fr/savoir-faire               | mobile  |    97 |     100 |              100 | 100 | 2.3 s | 130 ms |   0 |
 
-**Lecture critique.** Accessibilité, bonnes pratiques et SEO : 100 partout ; performance bureau : 100 partout. En **mobile**, 91 à 97 : la moitié des pages n'atteignent pas l'objectif de 95. Ce qui coûte encore, par ordre d'importance :
+**Lecture critique.** Accessibilité, bonnes pratiques et SEO : 100 partout ; performance bureau : 100 partout. En **mobile**, 13 pages sur 14 atteignent l'objectif de 95 (médiane 97). L'accueil français, à 93 dans ce passage, donne 96, 97 et 98 sur trois mesures supplémentaires : la simulation varie de ±3 points d'un passage à l'autre. Ce qui coûte encore :
 
-1. **LCP de 2,5 à 3,2 s** : sur 4G lente simulée, l'image ou le texte principal attend les trois polices préchargées (~100 Ko : Cormorant romain et italique, Jost). L'italique est visible dès l'en-tête, d'où son préchargement. Piste : sous-ensemble plus serré des polices (−30 à −40 %) ou italique sans préchargement.
-2. **TBT de 80 à 290 ms** : hydratation de React et du routeur (~150 Ko compressés, socle du cadre), plus haut sur les pages à formulaire (Atelier, rendez-vous).
-3. Écart d'une mesure à l'autre : ±3 points sur une même page (simulation Lantern).
+1. **LCP de 1,7 à 3,0 s** en 4G lente simulée : l'image ou le texte principal attend le HTML, la feuille de style et les polices préchargées (64 Ko depuis leur réduction, contre 102 : la médiane mobile est passée de 95 à 97).
+2. **TBT de 60 à 170 ms** : hydratation de React et du routeur (~150 Ko compressés, socle du cadre).
 
 Avant la phase 7 : accueil mobile à 59 (3D en rendu logiciel : 145 s de blocage), contraste insuffisant des étapes inactives du Savoir-faire, `dl` invalide sur les fiches, favicon absent, aucune image de partage, ni sitemap, ni robots.txt.
 
